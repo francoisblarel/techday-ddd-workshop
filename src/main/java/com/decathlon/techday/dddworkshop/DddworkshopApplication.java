@@ -2,6 +2,7 @@ package com.decathlon.techday.dddworkshop;
 
 import com.decathlon.techday.dddworkshop.domain.Ad;
 import com.decathlon.techday.dddworkshop.domain.AdRepository;
+import com.decathlon.techday.dddworkshop.domain.AdStatus;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class DddworkshopApplication {
     return (args) -> {
       // save a few customers
       UUID id = UUID.randomUUID();
-      repository.save(new Ad(id));
+      repository.save(new Ad(id, 12.99f, "Wooden cup", "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, 10));
 
       // fetch all customers
       log.info("Ad found with get(id):");
