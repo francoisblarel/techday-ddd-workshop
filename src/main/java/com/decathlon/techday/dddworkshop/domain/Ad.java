@@ -56,7 +56,11 @@ public class Ad {
     return quantity;
   }
 
-  public void setPrice(Price price) {
-    this.price = price;
+  public void applyDiscount(float discount) {
+    if (quantity.value() < 5) {
+      throw new RuntimeException("Too much quantity to apply discount");
+    }
+
+    this.price = this.price.discount(discount);
   }
 }

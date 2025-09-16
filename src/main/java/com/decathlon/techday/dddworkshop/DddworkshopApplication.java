@@ -43,7 +43,7 @@ public class DddworkshopApplication {
       displayAd(repository, id);
 
       // apply discount
-      cupAd.setPrice(cupAd.price().discount(10));
+      cupAd.applyDiscount(10);
       repository.save(cupAd);
       displayAd(repository, id);
     };
