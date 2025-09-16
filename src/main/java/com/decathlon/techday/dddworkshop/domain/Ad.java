@@ -7,8 +7,8 @@ public class Ad {
   private final UUID id;
   private final String name;
   private final String description;
-  private final AdStatus status;
-  private final Quantity quantity;
+  private AdStatus status;
+  private Quantity quantity;
   private Price price;
 
   public Ad(UUID id, Price price, String name, String description, AdStatus status, Quantity quantity) {
@@ -61,6 +61,19 @@ public class Ad {
       throw new RuntimeException("Too much quantity to apply discount");
     }
 
-    this.price = this.price.discount(discount);
+    this.price = price.discount(discount);
   }
+
+  public void sell(Quantity quantityToSell) {
+    if (!status.equals(AdStatus.PUBLISHED)) {
+      throw new RuntimeException("Cannot sell items if Ad is not published");
+    }
+
+    this.quantity = quantity.decrease(quantityToSell);
+
+    if (quantity.isZero()) {
+      this.status = AdStatus.SOLD_OUT;
+    }
+  }
+
 }

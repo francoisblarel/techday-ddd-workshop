@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class AdFixture {
 
-  public static Ad WOODEN_CUP_AD() {
+  public static Ad DRAFT_WOODEN_CUP_AD() {
     return new Ad(UUID.fromString("f3a66477-591c-4ca8-8549-0909648f23a5"),
       new Price(13.00f, Currency.getInstance("EUR")), "Wooden cup",
       "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, new Quantity(10));
@@ -18,6 +18,6 @@ public class AdFixture {
   public static Ad WOODEN_CUP_AD_WITH_QUANTITY(int quantity) {
     return new Ad(UUID.fromString("f3a66477-591c-4ca8-8549-0909648f23a5"),
       new Price(13.00f, Currency.getInstance("EUR")), "Wooden cup",
-      "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, new Quantity(quantity));
+      "Handcrafted wooden cup with DDD initiales", AdStatus.PUBLISHED, new Quantity(quantity));
   }
 }
