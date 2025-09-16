@@ -5,13 +5,13 @@ import java.util.UUID;
 public class Ad {
 
   private final UUID id;
-  private final float price;
   private final String name;
   private final String description;
   private final AdStatus status;
-  private final int quantity;
+  private final Quantity quantity;
+  private Price price;
 
-  public Ad(UUID id, float price, String name, String description, AdStatus status, int quantity) {
+  public Ad(UUID id, Price price, String name, String description, AdStatus status, Quantity quantity) {
     this.id = id;
     this.price = price;
     this.name = name;
@@ -20,11 +20,23 @@ public class Ad {
     this.quantity = quantity;
   }
 
+  @Override
+  public String toString() {
+    return "Ad{" +
+      "id=" + id +
+      ", name='" + name + '\'' +
+      ", description='" + description + '\'' +
+      ", status=" + status +
+      ", quantity=" + quantity +
+      ", price=" + price +
+      '}';
+  }
+
   public UUID id() {
     return id;
   }
 
-  public float price() {
+  public Price price() {
     return price;
   }
 
@@ -40,7 +52,11 @@ public class Ad {
     return status;
   }
 
-  public int quantity() {
+  public Quantity quantity() {
     return quantity;
+  }
+
+  public void setPrice(Price price) {
+    this.price = price;
   }
 }

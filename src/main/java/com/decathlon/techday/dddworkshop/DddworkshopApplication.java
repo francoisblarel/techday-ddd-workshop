@@ -3,6 +3,9 @@ package com.decathlon.techday.dddworkshop;
 import com.decathlon.techday.dddworkshop.domain.Ad;
 import com.decathlon.techday.dddworkshop.domain.AdRepository;
 import com.decathlon.techday.dddworkshop.domain.AdStatus;
+import com.decathlon.techday.dddworkshop.domain.Price;
+import com.decathlon.techday.dddworkshop.domain.Quantity;
+import java.util.Currency;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,23 +20,32 @@ public class DddworkshopApplication {
   private static final Logger log = LoggerFactory.getLogger(DddworkshopApplication.class);
 
   public static void main(String[] args) {
-		SpringApplication.run(DddworkshopApplication.class, args);
-	}
+    SpringApplication.run(DddworkshopApplication.class, args);
+  }
+
+  private static void displayAd(AdRepository repository, UUID id) {
+    log.info("Ad found with get(id):");
+    log.info("-------------------------------");
+    repository.get(id).ifPresent(ad ->
+      log.info(ad.toString())
+    );
+    log.info("");
+  }
 
   @Bean
   public CommandLineRunner demo(AdRepository repository) {
     return (args) -> {
-      // save a few customers
       UUID id = UUID.randomUUID();
-      repository.save(new Ad(id, 12.99f, "Wooden cup", "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, 10));
+      Ad cupAd = new Ad(id, new Price(12.99f, Currency.getInstance("EUR")), "Wooden cup",
+        "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, new Quantity(10));
 
-      // fetch all customers
-      log.info("Ad found with get(id):");
-      log.info("-------------------------------");
-      repository.get(id).ifPresent(ad ->
-        log.info(ad.toString())
-      );
-      log.info("");
+      repository.save(cupAd);
+      displayAd(repository, id);
+
+      // apply discount
+      cupAd.setPrice(cupAd.price().discount(10));
+      repository.save(cupAd);
+      displayAd(repository, id);
     };
   }
 }
