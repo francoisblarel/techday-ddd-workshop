@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Ad {
 
+  private static final int ALMOST_SOLD_OUT_QUANTITIES = 5;
   private final UUID id;
   private final String name;
   private final String description;
@@ -57,7 +58,7 @@ public class Ad {
   }
 
   public void applyDiscount(float discount) {
-    if (quantity.value() < 5) {
+    if (quantity.value() < ALMOST_SOLD_OUT_QUANTITIES) {
       throw new RuntimeException("Too much quantity to apply discount");
     }
 
@@ -71,7 +72,7 @@ public class Ad {
 
     this.quantity = quantity.decrease(quantityToSell);
 
-    if (quantity.isZero()) {
+    if (quantity.isNotAvailable()) {
       this.status = AdStatus.SOLD_OUT;
     }
   }

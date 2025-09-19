@@ -68,7 +68,7 @@ class AdTest {
 
       cut.sell(quantityToSell);
 
-      assertTrue(cut.quantity().isZero());
+      assertTrue(cut.quantity().isNotAvailable());
       assertThat(cut.status()).isEqualTo(AdStatus.SOLD_OUT);
     }
   }

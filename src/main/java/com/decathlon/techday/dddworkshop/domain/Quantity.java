@@ -2,7 +2,7 @@ package com.decathlon.techday.dddworkshop.domain;
 
 public record Quantity(int value) {
 
-  public boolean isZero() {
+  public boolean isNotAvailable() {
     return value == 0;
   }
 

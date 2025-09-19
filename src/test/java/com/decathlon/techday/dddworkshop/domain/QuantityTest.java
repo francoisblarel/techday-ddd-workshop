@@ -13,21 +13,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 class QuantityTest {
 
   @Nested
-  class IsZero {
+  class IsNotAvailable {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 10, 42})
     void isNotZero(int value) {
       Quantity cut = new Quantity(value);
 
-      assertFalse(cut.isZero());
+      assertFalse(cut.isNotAvailable());
     }
 
     @Test
     void isZero() {
       Quantity cut = new Quantity(0);
 
-      assertTrue(cut.isZero());
+      assertTrue(cut.isNotAvailable());
     }
   }
 
