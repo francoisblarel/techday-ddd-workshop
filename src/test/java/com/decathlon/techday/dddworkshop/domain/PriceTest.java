@@ -2,6 +2,7 @@ package com.decathlon.techday.dddworkshop.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.Currency;
@@ -15,6 +16,23 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PriceTest {
 
   public static final Currency EUR = Currency.getInstance("EUR");
+
+  @Nested
+  class Constructor {
+
+    @Test
+    void negativeAmount() {
+      assertThatIllegalArgumentException()
+        .isThrownBy(() -> new Price(-10.00f, Currency.getInstance("EUR")))
+        .withMessage("Amount must be positive");
+    }
+
+    @Test
+    void positiveAmount() {
+      assertThatNoException()
+        .isThrownBy(() -> new Price(10.00f, Currency.getInstance("EUR")));
+    }
+  }
 
   @Nested
   class Discount {
