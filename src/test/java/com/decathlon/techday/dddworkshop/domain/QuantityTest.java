@@ -2,6 +2,7 @@ package com.decathlon.techday.dddworkshop.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,6 +12,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class QuantityTest {
+
+  @Nested
+  class Constructor {
+
+    @Test
+    void negativeQuantity() {
+      assertThatIllegalArgumentException()
+        .isThrownBy(() -> new Quantity(-1))
+        .withMessage("Quantity must be positive");
+    }
+
+    @Test
+    void positiveQuantity() {
+      assertThatNoException()
+        .isThrownBy(() -> new Quantity(3));
+    }
+  }
 
   @Nested
   class IsNotAvailable {

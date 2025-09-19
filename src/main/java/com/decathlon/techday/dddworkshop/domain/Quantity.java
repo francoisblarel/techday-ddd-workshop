@@ -2,6 +2,12 @@ package com.decathlon.techday.dddworkshop.domain;
 
 public record Quantity(int value) {
 
+  public Quantity {
+    if (value < 0) {
+      throw new IllegalArgumentException("Quantity must be positive");
+    }
+  }
+
   public boolean isNotAvailable() {
     return value == 0;
   }
