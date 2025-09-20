@@ -7,7 +7,7 @@
 
 ## 🔎 Introduction
 
-In this kata, we will progressively build a domain model around **Classified Ads**.  
+In this kata, we will progressively build a domain model around **Ads**.  
 The goal is not to build a full system, but to practice 4 core DDD concepts:
 
 - **Value Object**
@@ -26,21 +26,26 @@ We will move step by step, enforcing simple business rules at each stage.
 - An **Ad** must have a **Price**.
 - The price must be strictly positive.
 - The price includes a currency (at least **EUR** supported).
-- The **Title** of an Ad must be between 5 and 100 characters.
 
 ### Exercise
 
-1. Implement a `Price` class that encapsulates `amount` + `currency`.
+1. Allow to apply a discount on an Ad
 
-- Enforce invariants (amount > 0, supported currency).
+- Implement a `Price` class that encapsulates `amount` + `currency`.
+  *ici dans le use case, on va passer par un setter sur l'entity Ad,*
+  *mais en vrai on ferait plutot une methode applyDiscount sur l'entity Ad qui creerait un nouveau Price avec le bon*
+  *montant*
+- Enforce invariants (amount > 0). *Passer par un property test pour expliquer la propriété*
+
+- _Question_: what difference does it make if the Price is not immutable?_
+
 - Two prices with the same values must be equal (value-based equality).
 
-2. Implement a `Title` class that validates length constraints.
 
 **Wrap-up:**
 **- VO encapsulates business rules**
 **- VO is defined by its values, not identity.**
-**- VO is immutable (TODO what does it bring)**
+**- VO is immutable**
 
 
 ---
@@ -50,17 +55,24 @@ We will move step by step, enforcing simple business rules at each stage.
 ### Business Rules
 
 - An **Ad** has a unique identifier.
-- It has: `Title`, `Price`, `Description`.
-- It has a **status**: `Draft`, `Published`, `Archived`.
-- An Ad starts as a `Draft`.
+- It has: `Name`, `Price`, `Description`.
+- It has a **status**: `Draft`, `Published`, `SoldOut`
+- an Ad always starts with the `Draft` status.
 - An Ad can only be published if it has a valid title and a positive price.
+- When publishing an Ad, you can associate a quantity
 
 ### Exercise
 
-- Implement the `Ad` class.
-- Add a `publish()` method that enforces the publishing rules.
+1. Exercise: move the applyDiscount logic from the use case to the Ad entity.
+   **l'entity est responsable de l'integrité de son état, pas le use case**
+
+2. Implement a `publish` method that enforces the publishing rules.
+   **On ne créé pas d'instance spécifique pour les tests, on passe par les méthodes de l'entity pour arriver à l'état
+   voulu et garder une cohérence.**
+   **le all-args ne va être utilisé que par le repo**
 
 **Wrap-up: introduce identity and lifecycle.**
+**Wrap-up: responsibilities.**
 
 ---
 
