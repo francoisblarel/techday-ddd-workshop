@@ -1,4 +1,4 @@
-package com.decathlon.techday.dddworkshop.domain;
+package com.decathlon.techday.dddworkshop.studio.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

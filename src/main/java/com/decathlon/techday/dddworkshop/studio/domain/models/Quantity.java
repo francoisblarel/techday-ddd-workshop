@@ -1,6 +1,8 @@
-package com.decathlon.techday.dddworkshop.domain;
+package com.decathlon.techday.dddworkshop.studio.domain.models;
 
 public record Quantity(int value) {
+
+  public static Quantity NOT_AVAILABLE = new Quantity(0);
 
   public Quantity {
     if (value < 0) {

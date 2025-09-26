@@ -1,4 +1,4 @@
-package com.decathlon.techday.dddworkshop.domain;
+package com.decathlon.techday.dddworkshop.studio.domain.models;
 
 import java.util.Currency;
 
