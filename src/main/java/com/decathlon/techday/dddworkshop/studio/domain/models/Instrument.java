@@ -1,5 +1,6 @@
 package com.decathlon.techday.dddworkshop.studio.domain.models;
 
+import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
 import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
 import java.util.List;
 import java.util.UUID;
@@ -51,16 +52,24 @@ public class Instrument {
     return quantity;
   }
 
+  public UUID musicianId() {
+    return musicianId;
+  }
+
+  public List<Question> questions() {
+    return questions;
+  }
+
   public boolean isPublished() {
     return status == InstrumentStatus.PUBLISHED;
   }
 
-  public void publish(Quantity quantity) throws InvalidInstrumentStatusException {
+  public void publish(Quantity quantity) throws InvalidInstrumentStatusException, InvalidInstrumentException {
     if (status != InstrumentStatus.DRAFT) {
       throw new InvalidInstrumentStatusException("Cannot publish a not DRAFT Instrument");
     }
     if (name.isEmpty()) {
-      throw new IllegalStateException("Cannot publish an Instrument without name");
+      throw new InvalidInstrumentException("Cannot publish an Instrument without name");
     }
 
     this.quantity = quantity;
@@ -105,4 +114,5 @@ public class Instrument {
       .findFirst()
       .ifPresent(question -> question.answer(answer));
   }
+
 }

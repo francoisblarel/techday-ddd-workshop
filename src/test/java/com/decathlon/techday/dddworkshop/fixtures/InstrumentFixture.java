@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public class InstrumentFixture {
 
-  public static Instrument DRAFT_SPECTOR_BASS(UUID userId) {
-    return new Instrument(userId, "Spector bass", "Handcrafted Spector bass with DDD initiales",
+  public static Instrument DRAFT_SPECTOR_BASS(UUID musicianId) {
+    return new Instrument(musicianId, "Spector bass", "Handcrafted Spector bass with DDD initiales",
       new Price(13.00f, Currency.getInstance("EUR")));
   }
 
-  public static Instrument PUBLISHED_SPECTOR_BASS(UUID userId, int quantity) {
-    Instrument instrument = DRAFT_SPECTOR_BASS(userId);
+  public static Instrument PUBLISHED_SPECTOR_BASS(UUID musicianId, int quantity) {
+    Instrument instrument = DRAFT_SPECTOR_BASS(musicianId);
     try {
       instrument.publish(new Quantity(quantity));
     } catch (Exception e) {

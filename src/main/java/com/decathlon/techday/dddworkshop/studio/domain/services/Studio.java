@@ -4,6 +4,8 @@ import com.decathlon.techday.dddworkshop.musician.domain.models.Musician;
 import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
 import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
 import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InstrumentLimitReachedException;
+import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
 import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
 
 public class Studio {
@@ -16,15 +18,14 @@ public class Studio {
   }
 
   public Instrument publishInstrument(Musician musician, Instrument instrument, Quantity quantity)
-    throws InvalidInstrumentStatusException {
+    throws InvalidInstrumentStatusException, InstrumentLimitReachedException, InvalidInstrumentException {
     long publishedAdsCount = instrumentRepository.getAllByUser(musician.getId())
       .stream()
       .filter(Instrument::isPublished)
       .count();
 
     if (publishedAdsCount >= USER_PUBLISHED_ADS_LIMIT) {
-      // TODO replace all exceptions
-      throw new RuntimeException("Musician published Instruments limit reached");
+      throw new InstrumentLimitReachedException("Musician published Instruments limit reached");
     }
 
     instrument.publish(quantity);

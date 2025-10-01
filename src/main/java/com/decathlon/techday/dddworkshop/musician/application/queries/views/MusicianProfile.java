@@ -11,7 +11,7 @@ public record MusicianProfile(
   List<InstrumentView> buyingHistory
 ) {
 
-  record InstrumentView(String name, String description, Price price) {
+  public record InstrumentView(String name, String description, Price price) {
 
   }
 }

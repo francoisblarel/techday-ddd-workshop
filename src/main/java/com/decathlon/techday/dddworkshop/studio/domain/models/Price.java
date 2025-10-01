@@ -6,6 +6,7 @@ public record Price(float amount, Currency currency) {
 
   public Price {
     if (amount < 0) {
+      // TODO custom exception?
       throw new IllegalArgumentException("Amount must be positive");
     }
   }

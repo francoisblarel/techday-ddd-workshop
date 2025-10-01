@@ -1,7 +1,7 @@
 package com.decathlon.techday.dddworkshop.studio.domain.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatRuntimeException;
+import static org.assertj.core.api.Assertions.assertThatException;
 import static org.mockito.Mockito.when;
 
 import com.decathlon.techday.dddworkshop.fixtures.InstrumentFixture;
@@ -9,6 +9,8 @@ import com.decathlon.techday.dddworkshop.musician.domain.models.Musician;
 import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
 import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
 import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InstrumentLimitReachedException;
+import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
 import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
 import java.util.List;
 import java.util.UUID;
@@ -41,13 +43,16 @@ class StudioTest {
 
     Instrument instrumentToPublish = InstrumentFixture.DRAFT_SPECTOR_BASS(userId);
 
-    assertThatRuntimeException().isThrownBy(() -> cut.publishInstrument(musician, instrumentToPublish, new Quantity(2)))
+    assertThatException()
+      .isThrownBy(() -> cut.publishInstrument(musician, instrumentToPublish, new Quantity(2)))
+      .isInstanceOf(InstrumentLimitReachedException.class)
       .withMessage("Musician published Instruments limit reached");
   }
 
   @Test
   @Label("When Musician has less than 3 published Instruments, the Instrument can be published")
-  void should_publish_instrument() throws InvalidInstrumentStatusException {
+  void should_publish_instrument()
+    throws InvalidInstrumentStatusException, InstrumentLimitReachedException, InvalidInstrumentException {
     Musician musician = new Musician("Bob");
     UUID userId = musician.getId();
     Instrument instrumentToPublish = InstrumentFixture.DRAFT_SPECTOR_BASS(userId);
