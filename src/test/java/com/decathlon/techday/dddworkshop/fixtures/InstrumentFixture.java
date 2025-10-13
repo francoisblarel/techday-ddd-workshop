@@ -1,8 +1,8 @@
 package com.decathlon.techday.dddworkshop.fixtures;
 
-import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Price;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Instrument;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Price;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Quantity;
 import java.util.Currency;
 import java.util.UUID;
 

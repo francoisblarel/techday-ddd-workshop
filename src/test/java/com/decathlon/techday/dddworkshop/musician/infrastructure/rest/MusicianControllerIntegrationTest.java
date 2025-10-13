@@ -7,12 +7,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Price;
 import com.decathlon.techday.dddworkshop.musician.application.queries.ViewMusicianProfile;
 import com.decathlon.techday.dddworkshop.musician.application.queries.views.MusicianProfile;
 import com.decathlon.techday.dddworkshop.musician.application.queries.views.MusicianProfile.InstrumentView;
 import com.decathlon.techday.dddworkshop.musician.domain.models.Reputation;
 import com.decathlon.techday.dddworkshop.musician.infrastructure.rest.dtos.MusicianProfileDto;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Price;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Currency;
 import java.util.List;

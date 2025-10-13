@@ -1,16 +1,12 @@
 package com.decathlon.techday.dddworkshop.studio.domain;
 
-import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
+import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface InstrumentRepository {
 
-  Instrument save(Instrument instrument);
+  List<Instrument> getByMusician(MusicianId musicianId);
 
-  Optional<Instrument> get(UUID id);
-
-  List<Instrument> getAllByUser(UUID userId);
+  void save(Instrument instrument);
 
 }

@@ -1,12 +1,12 @@
-package com.decathlon.techday.dddworkshop.studio.domain.services;
+package com.decathlon.techday.dddworkshop.marketplace.domain.services;
 
+import com.decathlon.techday.dddworkshop.marketplace.domain.InstrumentRepository;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Instrument;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InstrumentLimitReachedException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentStatusException;
 import com.decathlon.techday.dddworkshop.musician.domain.models.Musician;
-import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InstrumentLimitReachedException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
 
 public class Studio {
 

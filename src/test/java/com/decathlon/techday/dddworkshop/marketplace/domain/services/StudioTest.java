@@ -1,17 +1,17 @@
-package com.decathlon.techday.dddworkshop.studio.domain.services;
+package com.decathlon.techday.dddworkshop.marketplace.domain.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatException;
 import static org.mockito.Mockito.when;
 
 import com.decathlon.techday.dddworkshop.fixtures.InstrumentFixture;
+import com.decathlon.techday.dddworkshop.marketplace.domain.InstrumentRepository;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Instrument;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InstrumentLimitReachedException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentStatusException;
 import com.decathlon.techday.dddworkshop.musician.domain.models.Musician;
-import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InstrumentLimitReachedException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
 import java.util.List;
 import java.util.UUID;
 import net.jqwik.api.Label;
@@ -30,7 +30,7 @@ class StudioTest {
   private InstrumentRepository instrumentRepository;
 
   @Test
-  @Label("When Musician has more than 3 published Instruments, no more Instrument can be published")
+  @Label("When Musician has more than 3 published Instruments, no more InstrumentDbEntity can be published")
   void should_not_publish_instrument() {
     Musician musician = new Musician("Bob");
     UUID userId = musician.getId();
@@ -50,7 +50,7 @@ class StudioTest {
   }
 
   @Test
-  @Label("When Musician has less than 3 published Instruments, the Instrument can be published")
+  @Label("When Musician has less than 3 published Instruments, the InstrumentDbEntity can be published")
   void should_publish_instrument()
     throws InvalidInstrumentStatusException, InstrumentLimitReachedException, InvalidInstrumentException {
     Musician musician = new Musician("Bob");

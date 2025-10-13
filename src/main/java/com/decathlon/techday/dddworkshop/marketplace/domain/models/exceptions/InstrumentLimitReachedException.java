@@ -1,4 +1,4 @@
-package com.decathlon.techday.dddworkshop.studio.domain.models.exceptions;
+package com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions;
 
 public class InstrumentLimitReachedException extends Exception {
 

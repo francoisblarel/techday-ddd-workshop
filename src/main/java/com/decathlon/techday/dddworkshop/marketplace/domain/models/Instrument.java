@@ -1,7 +1,7 @@
-package com.decathlon.techday.dddworkshop.studio.domain.models;
+package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentStatusException;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,10 +66,10 @@ public class Instrument {
 
   public void publish(Quantity quantity) throws InvalidInstrumentStatusException, InvalidInstrumentException {
     if (status != InstrumentStatus.DRAFT) {
-      throw new InvalidInstrumentStatusException("Cannot publish a not DRAFT Instrument");
+      throw new InvalidInstrumentStatusException("Cannot publish a not DRAFT InstrumentDbEntity");
     }
     if (name.isEmpty()) {
-      throw new InvalidInstrumentException("Cannot publish an Instrument without name");
+      throw new InvalidInstrumentException("Cannot publish an InstrumentDbEntity without name");
     }
 
     this.quantity = quantity;
@@ -86,7 +86,7 @@ public class Instrument {
 
   public void sell(Quantity quantityToSell) {
     if (!status.equals(InstrumentStatus.PUBLISHED)) {
-      throw new RuntimeException("Cannot sell items if Instrument is not published");
+      throw new RuntimeException("Cannot sell items if InstrumentDbEntity is not published");
     }
 
     this.quantity = quantity.decrease(quantityToSell);
@@ -98,7 +98,7 @@ public class Instrument {
 
   public void askQuestion(Question question) throws InvalidInstrumentStatusException {
     if (!status.equals(InstrumentStatus.PUBLISHED)) {
-      throw new InvalidInstrumentStatusException("Cannot ask questions if Instrument is not published");
+      throw new InvalidInstrumentStatusException("Cannot ask questions if InstrumentDbEntity is not published");
     }
 
     questions.add(question);
@@ -106,7 +106,7 @@ public class Instrument {
 
   public void answerQuestion(UUID questionId, Answer answer) throws InvalidInstrumentStatusException {
     if (!status.equals(InstrumentStatus.PUBLISHED)) {
-      throw new InvalidInstrumentStatusException("Cannot answer question if Instrument is not published");
+      throw new InvalidInstrumentStatusException("Cannot answer question if InstrumentDbEntity is not published");
     }
 
     questions.stream()

@@ -1,11 +1,11 @@
-package com.decathlon.techday.dddworkshop.studio.domain;
+package com.decathlon.techday.dddworkshop.marketplace.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import com.decathlon.techday.dddworkshop.studio.domain.models.Price;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Price;
 import java.util.Currency;
 import java.util.stream.Stream;
 import net.jqwik.api.ForAll;

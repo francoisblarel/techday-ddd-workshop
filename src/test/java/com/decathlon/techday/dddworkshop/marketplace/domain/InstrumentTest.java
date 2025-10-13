@@ -1,16 +1,16 @@
-package com.decathlon.techday.dddworkshop.studio.domain;
+package com.decathlon.techday.dddworkshop.marketplace.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatException;
 import static org.assertj.core.api.Assertions.assertThatRuntimeException;
 
 import com.decathlon.techday.dddworkshop.fixtures.InstrumentFixture;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Instrument;
-import com.decathlon.techday.dddworkshop.studio.domain.models.InstrumentStatus;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Price;
-import com.decathlon.techday.dddworkshop.studio.domain.models.Quantity;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentException;
-import com.decathlon.techday.dddworkshop.studio.domain.models.exceptions.InvalidInstrumentStatusException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Instrument;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.InstrumentStatus;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Price;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Quantity;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidInstrumentStatusException;
 import java.util.Currency;
 import java.util.UUID;
 import org.junit.jupiter.api.Nested;
@@ -49,7 +49,7 @@ class InstrumentTest {
       assertThatException()
         .isThrownBy(() -> cut.publish(new Quantity(2)))
         .isInstanceOf(InvalidInstrumentStatusException.class)
-        .withMessage("Cannot publish a not DRAFT Instrument");
+        .withMessage("Cannot publish a not DRAFT InstrumentDbEntity");
     }
 
     @Test
@@ -60,7 +60,7 @@ class InstrumentTest {
       assertThatException()
         .isThrownBy(() -> cut.publish(new Quantity(2)))
         .isInstanceOf(InvalidInstrumentException.class)
-        .withMessage("Cannot publish an Instrument without name");
+        .withMessage("Cannot publish an InstrumentDbEntity without name");
     }
 
     @Test
@@ -108,7 +108,7 @@ class InstrumentTest {
 
       assertThatRuntimeException()
         .isThrownBy(() -> cut.sell(new Quantity(2)))
-        .withMessageStartingWith("Cannot sell items if Instrument is not published");
+        .withMessageStartingWith("Cannot sell items if InstrumentDbEntity is not published");
     }
 
     @Test

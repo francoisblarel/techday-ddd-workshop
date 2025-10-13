@@ -1,4 +1,4 @@
-package com.decathlon.techday.dddworkshop.studio.domain.models;
+package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
 public record Quantity(int value) {
 

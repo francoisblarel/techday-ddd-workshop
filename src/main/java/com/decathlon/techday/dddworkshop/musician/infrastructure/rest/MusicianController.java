@@ -1,3 +1,4 @@
+/*
 package com.decathlon.techday.dddworkshop.musician.infrastructure.rest;
 
 import com.decathlon.techday.dddworkshop.musician.application.queries.ViewMusicianProfile;
@@ -47,3 +48,4 @@ public class MusicianController {
   }
 
 }
+*/
