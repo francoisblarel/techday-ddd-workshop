@@ -1,5 +1,5 @@
 package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
-public class Answer {
-
+public enum ProposalStatus {
+  WAITING, ACCEPTED, REJECTED
 }

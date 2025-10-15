@@ -4,14 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatException;
 
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
+import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
 import java.util.Currency;
+import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class AdTest {
 
-  private final Ad cut = new Ad("Fender American Professional 2", new Price(1999.99f, Currency.getInstance("EUR")));
+  private final Ad cut = new Ad(new MusicianId(UUID.randomUUID()), "Fender American Professional 2",
+    new Price(1999.99f, Currency.getInstance("EUR")));
 
   @Test
   @DisplayName("When creating an Ad, the status is Available")

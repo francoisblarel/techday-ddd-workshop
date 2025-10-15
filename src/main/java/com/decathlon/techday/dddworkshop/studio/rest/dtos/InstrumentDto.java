@@ -1,15 +1,15 @@
 package com.decathlon.techday.dddworkshop.studio.rest.dtos;
 
-import com.decathlon.techday.dddworkshop.studio.domain.Instrument;
+import com.decathlon.techday.dddworkshop.studio.domain.InstrumentDbEntity;
 
 public class InstrumentDto {
 
   private String name;
   private String price;
 
-  public InstrumentDto(Instrument instrument) {
-    this.name = instrument.name();
-    this.price = instrument.price() + " " + instrument.currency().toString();
+  public InstrumentDto(InstrumentDbEntity instrument) {
+    this.name = instrument.getName();
+    this.price = instrument.getPrice() + " " + instrument.getCurrency().toString();
   }
 
   public String getName() {

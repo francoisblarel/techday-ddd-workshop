@@ -1,3 +1,4 @@
+/*
 package com.decathlon.techday.dddworkshop.fixtures;
 
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.Instrument;
@@ -24,3 +25,4 @@ public class InstrumentFixture {
     return instrument;
   }
 }
+*/

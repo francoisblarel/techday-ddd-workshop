@@ -1,5 +1,6 @@
 package com.decathlon.techday.dddworkshop.studio.persistency;
 
+import com.decathlon.techday.dddworkshop.studio.domain.InstrumentDbEntity;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;

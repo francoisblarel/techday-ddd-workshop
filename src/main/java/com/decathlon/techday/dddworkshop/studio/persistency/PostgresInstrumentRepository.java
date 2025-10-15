@@ -1,7 +1,7 @@
 package com.decathlon.techday.dddworkshop.studio.persistency;
 
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
-import com.decathlon.techday.dddworkshop.studio.domain.Instrument;
+import com.decathlon.techday.dddworkshop.studio.domain.InstrumentDbEntity;
 import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -16,15 +16,12 @@ public class PostgresInstrumentRepository implements InstrumentRepository {
   }
 
   @Override
-  public List<Instrument> getByMusician(MusicianId musicianId) {
-    return instrumentRepository.findAllByMusicianId(musicianId.id())
-      .stream()
-      .map(InstrumentDbEntity::toInstrument)
-      .toList();
+  public List<InstrumentDbEntity> getByMusician(MusicianId musicianId) {
+    return instrumentRepository.findAllByMusicianId(musicianId.id());
   }
 
   @Override
-  public void save(Instrument instrument) {
-    instrumentRepository.save(InstrumentDbEntity.fromInstrument(instrument));
+  public void save(InstrumentDbEntity instrument) {
+    instrumentRepository.save(instrument);
   }
 }

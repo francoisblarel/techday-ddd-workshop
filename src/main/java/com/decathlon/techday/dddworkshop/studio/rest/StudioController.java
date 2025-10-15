@@ -25,7 +25,7 @@ public class StudioController {
 
   @GetMapping("/musicians/{id}")
   public ResponseEntity<List<InstrumentDto>> getMusicianStudio(@PathVariable UUID id) {
-    List<InstrumentDto> instrumentDtos = instrumentRepository.getByMusician(new MusicianId(id))
+    List<InstrumentDto> instrumentDtos = instrumentRepository.getByMusician(new MusicianId(id)) // MOVE IT INTO SERVICE
       .stream()
       .map(InstrumentDto::new)
       .toList();

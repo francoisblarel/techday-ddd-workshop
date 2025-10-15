@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface InstrumentRepository {
 
-  List<Instrument> getByMusician(MusicianId musicianId);
+  List<InstrumentDbEntity> getByMusician(MusicianId musicianId);
 
-  void save(Instrument instrument);
+  void save(InstrumentDbEntity instrument);
 
 }
