@@ -1,0 +1,51 @@
+package com.decathlon.techday.dddworkshop.architecture;
+
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+
+import com.tngtech.archunit.core.importer.ImportOption;
+import com.tngtech.archunit.junit.AnalyzeClasses;
+import com.tngtech.archunit.junit.ArchTest;
+import com.tngtech.archunit.lang.ArchRule;
+
+@AnalyzeClasses(packages = {"com.decathlon.techday.dddworkshop"}, importOptions = {
+  ImportOption.DoNotIncludeTests.class})
+public class CleanArchitectureTest {
+
+  @ArchTest
+  public static final ArchRule domain_does_not_depend_on_infrastructure = noClasses()
+    .that()
+    .resideInAPackage("..domain..")
+    .should()
+    .dependOnClassesThat()
+    .resideInAPackage(
+      "..infrastructure..");
+
+  @ArchTest
+  public static final ArchRule domain_does_not_depend_on_application = noClasses()
+    .that()
+    .resideInAPackage("..domain..")
+    .should()
+    .dependOnClassesThat()
+    .resideInAPackage("..application..");
+
+  @ArchTest
+  public static final ArchRule application_does_not_depend_on_infrastructure = noClasses()
+    .that()
+    .resideInAPackage("..application..")
+    .should()
+    .dependOnClassesThat(
+      resideInAnyPackage("..infrastructure..")
+    );
+
+  @ArchTest
+  public static final ArchRule infrastructure_has_no_dependency_with_something_else_than_infrastructure = classes()
+    .that()
+    .resideInAPackage("..infrastructure..")
+    .and()
+    .resideOutsideOfPackages("..jooq..")
+    .should()
+    .onlyHaveDependentClassesThat()
+    .resideInAnyPackage("..infrastructure..", "..configurations..");
+}
