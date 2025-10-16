@@ -13,7 +13,7 @@ public class Ad {
 
   private final UUID id;
   private final MusicianId musicianId;
-  private final String instrument; //
+  private final String instrument;
   private List<Proposal> proposals;
   private Price price;
   private AdStatus status;

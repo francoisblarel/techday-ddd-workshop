@@ -43,9 +43,15 @@ public class CleanArchitectureTest {
   public static final ArchRule infrastructure_has_no_dependency_with_something_else_than_infrastructure = classes()
     .that()
     .resideInAPackage("..infrastructure..")
-    .and()
-    .resideOutsideOfPackages("..jooq..")
     .should()
     .onlyHaveDependentClassesThat()
     .resideInAnyPackage("..infrastructure..", "..configurations..");
+
+  @ArchTest
+  public static final ArchRule no_log_outside_use_cases_nor_queries = noClasses()
+    .that()
+    .resideOutsideOfPackages("..usecases..", "..queries..")
+    .should()
+    .dependOnClassesThat()
+    .resideInAPackage("org.slf4j..");
 }
