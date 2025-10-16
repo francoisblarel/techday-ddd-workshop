@@ -1,11 +1,9 @@
 package com.decathlon.techday.dddworkshop;
 
-import com.decathlon.techday.dddworkshop.domain.Ad;
-import com.decathlon.techday.dddworkshop.domain.AdRepository;
-import com.decathlon.techday.dddworkshop.domain.AdStatus;
+import com.decathlon.techday.dddworkshop.studio.domain.InstrumentDbEntity;
+import com.decathlon.techday.dddworkshop.studio.domain.InstrumentRepository;
+import java.util.Currency;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,26 +12,18 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class DddworkshopApplication {
 
-  private static final Logger log = LoggerFactory.getLogger(DddworkshopApplication.class);
-
   public static void main(String[] args) {
-		SpringApplication.run(DddworkshopApplication.class, args);
-	}
+    SpringApplication.run(DddworkshopApplication.class, args);
+  }
 
   @Bean
-  public CommandLineRunner demo(AdRepository repository) {
+  public CommandLineRunner demo(InstrumentRepository repository) {
     return (args) -> {
-      // save a few customers
-      UUID id = UUID.randomUUID();
-      repository.save(new Ad(id, 12.99f, "Wooden cup", "Handcrafted wooden cup with DDD initiales", AdStatus.DRAFT, 10));
+      InstrumentDbEntity fenderTelecaster = new InstrumentDbEntity(UUID.randomUUID(),
+        UUID.fromString("cbfd5b36-8467-4060-b5a7-e4693de9e16e"),
+        "Fender Telecaster American 2", 2099.90f, Currency.getInstance("EUR"));
 
-      // fetch all customers
-      log.info("Ad found with get(id):");
-      log.info("-------------------------------");
-      repository.get(id).ifPresent(ad ->
-        log.info(ad.toString())
-      );
-      log.info("");
+      repository.save(fenderTelecaster);
     };
   }
 }
