@@ -3,13 +3,6 @@ layout: center
 class: text-center
 ---
 
-# Why  DDD ?
-
----
-layout: center
-class: text-center
----
-
 ![images](../assets/projet-informatique.jpg)
 
 ---

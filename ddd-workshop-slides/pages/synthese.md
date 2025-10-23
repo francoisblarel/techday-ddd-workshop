@@ -10,11 +10,40 @@ layout: center
 class: text-center
 ---
 
-<div v-click>Value Object</div>
-<div v-click>Aggregate</div>
-<div v-click>Domain Service</div>
-<br>
-<div v-click>Domain Event</div>
+# What is DDD?
+
+---
+layout: center
+class: text-center
+---
+
+### Domain Driven Design
+
+<v-click>
+
+The DDD <span v-mark.red="2">methodology</span> offers a <span v-mark.red="3">set of practices</span> for a
+collaborative approach to software
+development,
+from the perspective of <span v-mark.circle.orange="4"> the business </span>.
+
+</v-click>
+
+<!--
+[click] Domain-Driven Design c'est 
+
+[click] une méthodologie qui propose 
+
+[click]un ensemble de pratiques pour une approche collaborative du développement logiciel, du point de vue
+
+[click] du métier.
+-->
+
+---
+layout: center
+class: text-center
+---
+
+![images](../assets/sangliers.jpg)
 
 ---
 layout: center
@@ -46,7 +75,7 @@ class: text-center
 
 <br>
 <div v-click>Not a silver bullet</div>
-<div v-click>somethimes CRUD is more relevant</div>
+<div v-click>sometimes CRUD is more relevant</div>
 <div v-click>easy to understand hard to master</div>
 <div v-click>iterative</div>
 <div v-click>be careful of the "by the book"</div>
@@ -78,29 +107,6 @@ On n'est pas obligé d'utiliser tous les patterns DDD.
 - Isoler les Bounded Contexts
 - strangler pattern
 -->
-
----
-layout: center
-class: text-center
----
-
-
-![strangler-pattern.jpg](../assets/strangler-pattern.jpg)
-
-
----
-layout: center
-class: text-center
----
-
-# Strangler pattern
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-    A(Outside world) --> B[Strangler proxy]
-    B <--> D[Legacy System]
-    B <--> E[new System]
-```
 
 ---
 layout: center

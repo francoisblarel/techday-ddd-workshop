@@ -36,11 +36,6 @@ Bienvenue à ce hands-on sur le Domain-Driven Design (DDD).
 -->
 
 ---
-src: ./pages/presentation.md
-hide: false
----
-
----
 src: ./pages/application.md
 hide: false
 ---

@@ -3,19 +3,6 @@ layout: center
 class: text-center
 ---
 
-# DDD in practice
-
-<!--
-Ok assez de théorie, on va essayer de mettre en lumière les concepts de DDD à travers un atelier pratique.
-
-histoire de musiciens
--->
-
----
-layout: center
-class: text-center
----
-
 # BackStage
 
 ### Application de vente d'instruments de musique entre musiciens
@@ -48,8 +35,9 @@ Instrument
 Studio
 Annonce
 Prix
-Proposition de prix
+Faire une Proposition de prix
 Alerte
+appliquer un discount
 -->
 --- 
 class: text-center
@@ -77,26 +65,7 @@ class: text-center
 layout: center
 ---
 
-Problem space vs Solution space
-
-
-<!--
-Ce qui est important, c'est de bien rester dans l'espace du problème, 
-et ne pas rentrer dans la solution technique.
-On reste sur "quoi", le "pourquoi", et pas le "comment". On cherche les termes précis, rendre explicite les règles implicites,
-comprendre quel problème on cherche à résoudre.
-
-Dans le solution space, on va créer un modèle technique, une architecture, des choix technologiques, etc...
-
-Ca parait évident, mais en tant que développeurs, on a tendance naturellement à penser "base de données", "table", "API REST", etc...
-C'est un biais naturel dont il faut avoir conscience.
--->
----
-class: text-center
-layout: center
----
-
-# Subdomains & Bounded Contexts
+# Sub-domains
 
 <!--
 Maintenant qu'on a un vocabulaire commun, on va pouvoir commencer à structurer notre domaine métier.
@@ -106,11 +75,12 @@ Un sous-domaine est une partie du domaine métier qui a une responsabilité clai
 
 Quels sont les sous-domaines dans notre application ?
 
-Gestion du studio de musique
+Studio
 Vente d'instruments: Marketplace
-Gestion des utilisateurs
+Gestion des comptes utilisateurs
 Gestion des notifications
-Gestion des alertes
+Alerting
+Payments
 -->
 
 ---
@@ -118,7 +88,7 @@ class: text-center
 layout: center
 ---
 
-# Subdomains
+# Sub-domains typologies
 
   <div v-click>Core Domain</div>
   <div v-click>Supporting Subdomain</div>
@@ -200,3 +170,66 @@ TODO: montrer le resultat d'un event storming sur ce domaine
 
 -->
 
+
+---
+layout: two-cols
+class: text-center
+---
+
+::default::
+<div v-click v-click.hide="12">
+
+## Strategic patterns
+
+<br>
+    <div v-click="3">Bounded Context</div>
+    <div v-click="4">Ubiquitous Language</div>
+    <div v-click="5">Context Map</div>
+
+</div>
+<br>
+<br>
+
+::right::
+<div v-click="2" >
+
+## Tactical patterns
+
+<br>
+    <div v-click="6">Entities</div>
+    <div v-click="7">Value Objects</div>
+    <div v-click="8">Aggregates</div>
+    <div v-click="9">Domain Services</div>
+    <div v-click="10">Repositories</div>
+    <div v-click="11">Domain Events</div>
+
+</div>
+
+<!--
+[click] Dans la boite à outils du DDD, on trouve des patterns stratégiques 
+[click] et tactiques.
+
+Les patterns stratégiques vont nous permettre de mieux comprendre le domaine métier,
+de mieux communiquer avec les experts métiers,
+de trouver un language commun et de construire un modèle partagé.
+
+Pour ça on va avoir comme outils
+[click] le Bounded Context,
+[click] le Language Ubiquitaire
+[click] et la Context Map.
+
+Les patterns tactiques vont nous permettre de structurer notre code
+afin de refléter le modèle métier que l'on a construit, grâce
+[click] aux Entities,
+[click] aux Value Objects,
+[click] aux Aggregates,
+[click] aux Domain Services,
+[click] aux Repositories
+[click] et aux Domain Events.
+
+[click] On a choisi aujourd'hui de se concentrer beaucoup plus longuement sur les patterns tactiques.
+Car c'est souvent le point d'entrée des développeurs dans le DDD, et la conference est orientée code.
+
+Maintenant il est important de comprendre que le DDD ne se limite pas aux patterns tactiques, et qu'au contraire
+le DDD commence par les patterns stratégiques (pas de tactique sans stratégie).
+-->
