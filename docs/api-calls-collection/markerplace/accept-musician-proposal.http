@@ -1,0 +1,3 @@
+### POST ad proposal
+POST http://localhost:8080/v1/marketplaces/ads/{{ad_id}}/proposals/musicians/983caf4c-506b-4716-8da6-9d34a8f18608/accept
+Content-Type: application/json
