@@ -3,6 +3,7 @@ package com.decathlon.techday.dddworkshop.marketplace.application.usecases;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.domain.AdRepository;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.Ad;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.UnknownAdException;
 import java.util.UUID;
@@ -18,7 +19,8 @@ public class MakeAdProposal {
     this.adRepository = adRepository;
   }
 
-  public void execute(AdProposalCommand command) throws NonDecentProposalException, UnknownAdException {
+  public void execute(AdProposalCommand command)
+    throws NonDecentProposalException, UnknownAdException, InvalidAdStatusException {
     UUID adId = command.adId();
 
     Ad ad = adRepository.findById(adId)

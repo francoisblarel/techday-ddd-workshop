@@ -28,6 +28,10 @@ public class Ad {
     this.proposals = List.of();
   }
 
+  public List<Proposal> getProposals() {
+    return proposals;
+  }
+
   public UUID getId() {
     return id;
   }
@@ -59,13 +63,18 @@ public class Ad {
   /**
    * Ensure there is only one proposal per musician
    */
-  public void doProposal(MusicianId musicianId, Price desiredPrice) throws NonDecentProposalException {
-    Predicate<Proposal> isMusicianOtherProposal = (proposal) -> proposal.getMusicianId().equals(musicianId);
+  public void doProposal(MusicianId musicianId, Price desiredPrice)
+    throws NonDecentProposalException, InvalidAdStatusException {
+    if (status != AdStatus.AVAILABLE) {
+      throw new InvalidAdStatusException("Cannot make a proposal for a non-available Ad");
+    }
+
+    Predicate<Proposal> isMusicianOtherProposal = (proposal) -> !proposal.getMusicianId().equals(musicianId);
 
     // TODO j'ai mis le check dans le makeProposal, et non sur l'Ad
     Proposal newProposal = Proposal.makeProposal(musicianId, desiredPrice, price);
 
-    proposals = Stream.concat(
+    this.proposals = Stream.concat(
       // Remove old musician proposals
       proposals.stream().filter(isMusicianOtherProposal),
       // Add new proposal
