@@ -1,7 +1,10 @@
 package com.decathlon.techday.dddworkshop.architecture;
 
+import static com.decathlon.techday.dddworkshop.architecture.CustomArchUnitConditions.notHaveSetters;
+import static com.tngtech.archunit.base.DescribedPredicate.not;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 import com.tngtech.archunit.core.importer.ImportOption;
@@ -54,4 +57,14 @@ public class CleanArchitectureTest {
     .should()
     .dependOnClassesThat()
     .resideInAPackage("org.slf4j..");
+
+  @ArchTest
+  public static final ArchRule no_setter_in_domain = methods()
+    .that()
+    .areDeclaredInClassesThat(
+      resideInAnyPackage("..domain..")
+        .and(not(resideInAnyPackage("..studio.domain.."))) // Studio use JPA Entities
+    )
+    .should(notHaveSetters);
+
 }
