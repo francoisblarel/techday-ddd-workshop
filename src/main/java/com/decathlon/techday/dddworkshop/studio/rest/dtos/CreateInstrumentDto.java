@@ -7,17 +7,17 @@ import java.util.UUID;
 public class CreateInstrumentDto {
 
   private final String name;
-  private final float price;
+  private final float amount;
   private final String currency;
 
-  public CreateInstrumentDto(String name, float price, String currency) {
+  public CreateInstrumentDto(String name, float amount, String currency) {
     this.name = name;
-    this.price = price;
+    this.amount = amount;
     this.currency = currency;
   }
 
   public InstrumentDbEntity toEntity(UUID musicianId) {
-    return new InstrumentDbEntity(UUID.randomUUID(), musicianId, name, price, Currency.getInstance(currency));
+    return new InstrumentDbEntity(UUID.randomUUID(), musicianId, name, amount, Currency.getInstance(currency));
   }
 
 }

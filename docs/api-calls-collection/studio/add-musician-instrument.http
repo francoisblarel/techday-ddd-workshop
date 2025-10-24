@@ -1,0 +1,9 @@
+### POST musician instrument
+POST http://localhost:8080/v1/studios/musicians/{{musician_id}}/instruments
+Content-Type: application/json
+
+{
+  "name": "Gibson LesPaul",
+  "amount": 2999.99,
+  "currency": "EUR"
+}

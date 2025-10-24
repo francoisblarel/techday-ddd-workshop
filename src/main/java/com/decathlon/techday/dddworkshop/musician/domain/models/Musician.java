@@ -8,12 +8,16 @@ public class Musician {
   private final MusicianId id;
   private final String name;
   private Reputation reputation;
-  // Many more fiels
 
   public Musician(String name) {
     this.id = new MusicianId(UUID.randomUUID());
     this.name = name;
     this.reputation = Reputation.NEW;
+  }
+  // Many more fiels
+
+  public Reputation getReputation() {
+    return reputation;
   }
 
   public void gainReputation() {
@@ -26,5 +30,9 @@ public class Musician {
 
   public MusicianId getId() {
     return id;
+  }
+
+  public String getName() {
+    return name;
   }
 }

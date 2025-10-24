@@ -1,0 +1,11 @@
+### POST ad proposal
+POST http://localhost:8080/v1/marketplaces/ads/{{ad_id}}/proposals
+x-musician-id: 71146d70-52f8-475c-86b2-d6720f96c0d2
+Content-Type: application/json
+
+{
+  "price": {
+    "amount": 2449.99,
+    "currency": "EUR"
+  }
+}

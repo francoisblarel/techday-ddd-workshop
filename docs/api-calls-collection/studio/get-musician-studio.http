@@ -1,0 +1,2 @@
+### GET musician studio
+GET http://localhost:8080/v1/studios/musicians/{{musician_id}}
