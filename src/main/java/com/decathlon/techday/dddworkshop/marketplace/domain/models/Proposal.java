@@ -6,24 +6,30 @@ import java.util.UUID;
 
 public class Proposal {
 
+  private static final double DECENT_THRESHOLD_RATIO = 0.6;
   private final UUID id;
   private final MusicianId musicianId;
-  private final float desiredDiscount; // TODO price instead
+  private final Price desiredPrice;
   private ProposalStatus status;
 
-  private Proposal(MusicianId musicianId, float desiredDiscount, Price originalPrice) {
+  private Proposal(MusicianId musicianId, Price desiredPrice) {
     this.id = UUID.randomUUID();
     this.musicianId = musicianId;
-    this.desiredDiscount = desiredDiscount;
+    this.desiredPrice = desiredPrice;
     this.status = ProposalStatus.WAITING;
   }
 
-  public static Proposal proposeDiscount(MusicianId musicianId, float desiredDiscount, Price originalPrice) {
-    if (desiredDiscount <= 0 || desiredDiscount > 100) {
-      throw new IllegalArgumentException("Discount must be between 0 and 100");
+  public static Proposal makeProposal(MusicianId musicianId, Price desiredPrice, Price originalPrice) {
+    float priceRatio = desiredPrice.amount() / originalPrice.amount();
+    if (priceRatio < DECENT_THRESHOLD_RATIO) {
+      throw new IllegalArgumentException("Proposal must be decent!");
     }
 
-    return new Proposal(musicianId, desiredDiscount, originalPrice);
+    return new Proposal(musicianId, desiredPrice);
+  }
+
+  public ProposalStatus getStatus() {
+    return status;
   }
 
   public void accept() throws InvalidProposalStatusException {
@@ -44,5 +50,9 @@ public class Proposal {
 
   public MusicianId getMusicianId() {
     return musicianId;
+  }
+
+  public Price getDesiredPrice() {
+    return desiredPrice;
   }
 }

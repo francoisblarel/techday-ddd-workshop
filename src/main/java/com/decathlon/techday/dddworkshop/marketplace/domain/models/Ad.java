@@ -2,6 +2,7 @@ package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidProposalStatusException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
 import java.util.List;
 import java.util.Optional;
@@ -58,12 +59,11 @@ public class Ad {
   /**
    * Ensure there is only one proposal per musician
    */
-  // TODO price instead of float
-  public void doProposal(MusicianId musicianId, float proposalPercentage) {
+  public void doProposal(MusicianId musicianId, Price desiredPrice) throws NonDecentProposalException {
     Predicate<Proposal> isMusicianOtherProposal = (proposal) -> proposal.getMusicianId().equals(musicianId);
-    Proposal newProposal = Proposal.proposeDiscount(musicianId, proposalPercentage, price);
 
-    // TODO check if proposedPrice < originalPrice
+    // TODO j'ai mis le check dans le makeProposal, et non sur l'Ad
+    Proposal newProposal = Proposal.makeProposal(musicianId, desiredPrice, price);
 
     proposals = Stream.concat(
       // Remove old musician proposals
