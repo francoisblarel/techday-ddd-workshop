@@ -1,20 +1,27 @@
 package com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest;
 
+import com.decathlon.techday.dddworkshop.marketplace.application.queries.GetAd;
+import com.decathlon.techday.dddworkshop.marketplace.application.queries.commands.GetAdCommand;
+import com.decathlon.techday.dddworkshop.marketplace.application.queries.responses.GetAdResponse;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.MakeAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.PublishAd;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.PublishAdCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.responses.PublishAdResponse;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.Ad;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.MusicianAdsLimitReached;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.UnknownAdException;
+import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.AdResponseDto;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.MakeAdProposalDto;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.PublishAdDto;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,10 +37,24 @@ public class AdsController {
 
   private final MakeAdProposal makeAdProposal;
   private final PublishAd publishAd;
+  private final GetAd getAd;
 
-  public AdsController(MakeAdProposal makeAdProposal, PublishAd publishAd) {
+  public AdsController(MakeAdProposal makeAdProposal, PublishAd publishAd, GetAd getAd) {
     this.makeAdProposal = makeAdProposal;
     this.publishAd = publishAd;
+    this.getAd = getAd;
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<AdResponseDto> getAdById(@PathVariable UUID id) {
+
+    GetAdResponse adResponse = getAd.execute(new GetAdCommand(id));
+
+    Optional<Ad> maybeAd = adResponse.maybeAd();
+
+    return maybeAd
+      .map(ad -> new ResponseEntity<>(new AdResponseDto(ad), HttpStatus.OK))
+      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @PostMapping("/{id}/proposals")
