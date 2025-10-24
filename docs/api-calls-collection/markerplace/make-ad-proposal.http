@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "price": {
-    "amount": 2449.99,
+    "amount": 2849.99,
     "currency": "EUR"
   }
 }

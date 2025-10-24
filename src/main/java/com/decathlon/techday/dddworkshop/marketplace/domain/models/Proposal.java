@@ -22,7 +22,8 @@ public class Proposal {
   public static Proposal makeProposal(MusicianId musicianId, Price desiredPrice, Price originalPrice) {
     float priceRatio = desiredPrice.amount() / originalPrice.amount();
     if (priceRatio < DECENT_THRESHOLD_RATIO) {
-      throw new IllegalArgumentException("Proposal must be decent!");
+      // TODO NonDecentProposalException
+      throw new IllegalArgumentException("Proposal must be decent!"); // TODO validate wording // Customer exception
     }
 
     return new Proposal(musicianId, desiredPrice);

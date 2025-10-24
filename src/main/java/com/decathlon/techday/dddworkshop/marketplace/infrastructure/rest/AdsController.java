@@ -1,7 +1,7 @@
 package com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest;
 
 import com.decathlon.techday.dddworkshop.marketplace.application.queries.GetAd;
-import com.decathlon.techday.dddworkshop.marketplace.application.queries.commands.GetAdCommand;
+import com.decathlon.techday.dddworkshop.marketplace.application.queries.queries.GetAdQuery;
 import com.decathlon.techday.dddworkshop.marketplace.application.queries.responses.GetAdResponse;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.AcceptAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.MakeAdProposal;
@@ -54,7 +54,7 @@ public class AdsController {
   @GetMapping("/{id}")
   public ResponseEntity<AdResponseDto> getAdById(@PathVariable UUID id) {
 
-    GetAdResponse adResponse = getAd.execute(new GetAdCommand(id));
+    GetAdResponse adResponse = getAd.handle(new GetAdQuery(id));
 
     Optional<Ad> maybeAd = adResponse.maybeAd();
 
@@ -91,4 +91,6 @@ public class AdsController {
 
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
+
+  // TODO make ad discount
 }

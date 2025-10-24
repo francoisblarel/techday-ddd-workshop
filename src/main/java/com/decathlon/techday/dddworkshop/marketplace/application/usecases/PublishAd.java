@@ -26,11 +26,13 @@ public class PublishAd {
 
   public PublishAdResponse execute(PublishAdCommand command) throws MusicianAdsLimitReached {
     MusicianId musicianId = command.adCommand().musicianId();
-    Optional<Musician> maybeMusician = musicianRepository.findById(musicianId);
+    // TODO ArchUnit => no repo outside bounded context
+    Optional<Musician> maybeMusician = musicianRepository.findById(
+      musicianId); // TODO Application Service dans Musician qui existe le findById => Utiliser une interface
     List<Ad> musicianAds = adRepository.findByMusicianId(musicianId);
 
     if (maybeMusician.isEmpty()) {
-      throw new IllegalArgumentException("Unknown musician"); // TODO: exception in Marketplace context or Musician ?
+      throw new IllegalArgumentException("Unknown musician"); // TODO: custom exception dans le SHARED
     }
 
     Ad publishedAd = AdFactory.publishAd(command.adCommand(), musicianAds, maybeMusician.get());

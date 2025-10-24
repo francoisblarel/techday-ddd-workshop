@@ -1,6 +1,6 @@
 package com.decathlon.techday.dddworkshop.marketplace.application.queries;
 
-import com.decathlon.techday.dddworkshop.marketplace.application.queries.commands.GetAdCommand;
+import com.decathlon.techday.dddworkshop.marketplace.application.queries.queries.GetAdQuery;
 import com.decathlon.techday.dddworkshop.marketplace.application.queries.responses.GetAdResponse;
 import com.decathlon.techday.dddworkshop.marketplace.domain.AdRepository;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.Ad;
@@ -16,8 +16,8 @@ public class GetAd {
     this.adRepository = adRepository;
   }
 
-  public GetAdResponse execute(GetAdCommand command) {
-    Optional<Ad> maybeAd = adRepository.findById(command.adId());
+  public GetAdResponse handle(GetAdQuery query) {
+    Optional<Ad> maybeAd = adRepository.findById(query.adId());
 
     return new GetAdResponse(maybeAd);
   }
