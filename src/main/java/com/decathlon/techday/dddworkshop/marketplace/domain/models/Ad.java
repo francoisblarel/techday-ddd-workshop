@@ -58,9 +58,12 @@ public class Ad {
   /**
    * Ensure there is only one proposal per musician
    */
+  // TODO price instead of float
   public void doProposal(MusicianId musicianId, float proposalPercentage) {
     Predicate<Proposal> isMusicianOtherProposal = (proposal) -> proposal.getMusicianId().equals(musicianId);
     Proposal newProposal = Proposal.proposeDiscount(musicianId, proposalPercentage, price);
+
+    // TODO check if proposedPrice < originalPrice
 
     proposals = Stream.concat(
       // Remove old musician proposals

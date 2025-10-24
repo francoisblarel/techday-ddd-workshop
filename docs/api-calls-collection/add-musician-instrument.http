@@ -1,0 +1,9 @@
+### POST musician instrument
+POST http://localhost:8080/v1/studios/musicians/cbfd5b36-8467-4060-b5a7-e4693de9e16f/instruments
+Content-Type: application/json
+
+{
+  "name": "Gibson LesPaul",
+  "price": 2999.99,
+  "currency": "EUR"
+}

@@ -26,10 +26,6 @@ public final class InstrumentDbEntity {
   public InstrumentDbEntity() {
   }
 
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
   public void setMusicianId(UUID musicianId) {
     this.musicianId = musicianId;
   }
@@ -56,5 +52,13 @@ public final class InstrumentDbEntity {
 
   public void setCurrency(Currency currency) {
     this.currency = currency;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
   }
 }

@@ -8,15 +8,13 @@ public class Proposal {
 
   private final UUID id;
   private final MusicianId musicianId;
-  private final float desiredDiscount;
-  private final Price originalPrice;
+  private final float desiredDiscount; // TODO price instead
   private ProposalStatus status;
 
   private Proposal(MusicianId musicianId, float desiredDiscount, Price originalPrice) {
     this.id = UUID.randomUUID();
     this.musicianId = musicianId;
     this.desiredDiscount = desiredDiscount;
-    this.originalPrice = originalPrice;
     this.status = ProposalStatus.WAITING;
   }
 
@@ -26,10 +24,6 @@ public class Proposal {
     }
 
     return new Proposal(musicianId, desiredDiscount, originalPrice);
-  }
-
-  public Price proposedPrice() {
-    return originalPrice.discount(desiredDiscount);
   }
 
   public void accept() throws InvalidProposalStatusException {
