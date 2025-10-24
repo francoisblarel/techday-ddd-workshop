@@ -9,7 +9,9 @@ import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.Un
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MakeAdProposal {
 
   private final AdRepository adRepository;
