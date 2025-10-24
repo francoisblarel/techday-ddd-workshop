@@ -23,20 +23,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(MarketplaceController.MARKETPLACE)
-public class MarketplaceController {
+@RequestMapping(AdsController.MARKETPLACE)
+public class AdsController {
 
-  public static final String MARKETPLACE = "/v1/marketplaces";
+  public static final String MARKETPLACE = "/v1/marketplaces/ads";
 
   private final MakeAdProposal makeAdProposal;
   private final PublishAd publishAd;
 
-  public MarketplaceController(MakeAdProposal makeAdProposal, PublishAd publishAd) {
+  public AdsController(MakeAdProposal makeAdProposal, PublishAd publishAd) {
     this.makeAdProposal = makeAdProposal;
     this.publishAd = publishAd;
   }
 
-  @PostMapping("/ads/{id}/proposals")
+  @PostMapping("/{id}/proposals")
   public ResponseEntity<Object> makeAdProposal(@PathVariable UUID id, @RequestHeader("x-musician-id") UUID musicianId,
     @RequestBody
     MakeAdProposalDto dto) throws UnknownAdException, NonDecentProposalException, InvalidAdStatusException {
@@ -46,7 +46,7 @@ public class MarketplaceController {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
-  @PostMapping("/ads")
+  @PostMapping()
   public ResponseEntity<UUID> publishAd(@RequestHeader("x-musician-id") UUID musicianId, @RequestBody PublishAdDto dto)
     throws MusicianAdsLimitReached {
 
