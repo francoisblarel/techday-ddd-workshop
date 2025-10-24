@@ -55,7 +55,7 @@ class AdTest {
   }
 
   @Nested
-  class DoProposal {
+  class MakeProposal {
 
     private static List<Proposal> getMusicianProposals(Ad cut, MusicianId musicianId1) {
       return cut.getProposals().stream()
@@ -70,7 +70,7 @@ class AdTest {
       cut.sell();
 
       assertThatException()
-        .isThrownBy(() -> cut.doProposal(musicianId,
+        .isThrownBy(() -> cut.makeProposal(musicianId,
           new Price(1799.99f, Currency.getInstance("EUR"))))
         .isInstanceOf(InvalidAdStatusException.class)
         .withMessage("Cannot make a proposal for a non-available Ad");
@@ -80,7 +80,7 @@ class AdTest {
     void non_existing_musician_proposal() throws NonDecentProposalException, InvalidAdStatusException {
       Ad cut = new Ad(musicianId, "Fender American Professional 2", new Price(1999.99f, Currency.getInstance("EUR")));
 
-      cut.doProposal(musicianId, new Price(1799.99f, Currency.getInstance("EUR")));
+      cut.makeProposal(musicianId, new Price(1799.99f, Currency.getInstance("EUR")));
 
       assertThat(getMusicianProposals(cut, musicianId)).hasSize(1);
     }
@@ -88,10 +88,10 @@ class AdTest {
     @Test
     void existing_musician_proposal() throws NonDecentProposalException, InvalidAdStatusException {
       Ad cut = new Ad(musicianId, "Fender American Professional 2", new Price(1999.99f, Currency.getInstance("EUR")));
-      cut.doProposal(anotherMusicianId, new Price(1895.00f, Currency.getInstance("EUR")));
-      cut.doProposal(musicianId, new Price(1650.00f, Currency.getInstance("EUR")));
+      cut.makeProposal(anotherMusicianId, new Price(1895.00f, Currency.getInstance("EUR")));
+      cut.makeProposal(musicianId, new Price(1650.00f, Currency.getInstance("EUR")));
 
-      cut.doProposal(musicianId, new Price(1799.99f, Currency.getInstance("EUR")));
+      cut.makeProposal(musicianId, new Price(1799.99f, Currency.getInstance("EUR")));
 
       assertThat(getMusicianProposals(cut, musicianId)).hasSize(1);
     }

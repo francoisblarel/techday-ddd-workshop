@@ -24,9 +24,9 @@ public class MakeAdProposal {
     UUID adId = command.adId();
 
     Ad ad = adRepository.findById(adId)
-      .orElseThrow(() -> new UnknownAdException("Unknown add " + adId));
+      .orElseThrow(() -> new UnknownAdException("Unknown ad " + adId));
 
-    ad.doProposal(command.musicianId(), command.desiredPrice());
+    ad.makeProposal(command.musicianId(), command.desiredPrice());
 
     adRepository.save(ad);
 

@@ -63,7 +63,7 @@ public class Ad {
   /**
    * Ensure there is only one proposal per musician
    */
-  public void doProposal(MusicianId musicianId, Price desiredPrice)
+  public void makeProposal(MusicianId musicianId, Price desiredPrice)
     throws NonDecentProposalException, InvalidAdStatusException {
     if (status != AdStatus.AVAILABLE) {
       throw new InvalidAdStatusException("Cannot make a proposal for a non-available Ad");
