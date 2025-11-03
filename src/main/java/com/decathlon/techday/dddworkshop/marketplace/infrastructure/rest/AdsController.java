@@ -4,11 +4,13 @@ import com.decathlon.techday.dddworkshop.marketplace.application.queries.GetAd;
 import com.decathlon.techday.dddworkshop.marketplace.application.queries.queries.GetAdQuery;
 import com.decathlon.techday.dddworkshop.marketplace.application.queries.responses.GetAdResponse;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.AcceptAdProposal;
+import com.decathlon.techday.dddworkshop.marketplace.application.usecases.ApplyAdDiscount;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.MakeAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.PublishAd;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.RejectAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AcceptAdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AdProposalCommand;
+import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.ApplyAdDiscountCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.PublishAdCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.RejectAdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.responses.PublishAdResponse;
@@ -19,6 +21,7 @@ import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.Mu
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.UnknownAdException;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.AdResponseDto;
+import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.ApplyDiscountDto;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.MakeAdProposalDto;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.PublishAdDto;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
@@ -45,15 +48,17 @@ public class AdsController {
   private final MakeAdProposal makeAdProposal;
   private final AcceptAdProposal acceptAdProposal;
   private final RejectAdProposal rejectAdProposal;
+  private final ApplyAdDiscount applyAdDiscount;
   private final PublishAd publishAd;
   private final GetAd getAd;
 
   public AdsController(MakeAdProposal makeAdProposal, AcceptAdProposal acceptAdProposal,
-    RejectAdProposal rejectAdProposal, PublishAd publishAd,
+    RejectAdProposal rejectAdProposal, ApplyAdDiscount applyAdDiscount, PublishAd publishAd,
     GetAd getAd) {
     this.makeAdProposal = makeAdProposal;
     this.acceptAdProposal = acceptAdProposal;
     this.rejectAdProposal = rejectAdProposal;
+    this.applyAdDiscount = applyAdDiscount;
     this.publishAd = publishAd;
     this.getAd = getAd;
   }
@@ -109,5 +114,12 @@ public class AdsController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
-  // TODO make ad discount
+  @PostMapping("/{id}/discounts")
+  public ResponseEntity<Object> applyDiscount(@PathVariable UUID id, @RequestBody ApplyDiscountDto dto)
+    throws UnknownAdException {
+
+    applyAdDiscount.execute(new ApplyAdDiscountCommand(id, dto.getDiscount()));
+
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }
