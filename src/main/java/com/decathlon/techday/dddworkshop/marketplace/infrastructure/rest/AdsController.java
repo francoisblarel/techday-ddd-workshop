@@ -6,9 +6,11 @@ import com.decathlon.techday.dddworkshop.marketplace.application.queries.respons
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.AcceptAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.MakeAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.PublishAd;
+import com.decathlon.techday.dddworkshop.marketplace.application.usecases.RejectAdProposal;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AcceptAdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.AdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.PublishAdCommand;
+import com.decathlon.techday.dddworkshop.marketplace.application.usecases.commands.RejectAdProposalCommand;
 import com.decathlon.techday.dddworkshop.marketplace.application.usecases.responses.PublishAdResponse;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.Ad;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
@@ -42,13 +44,16 @@ public class AdsController {
 
   private final MakeAdProposal makeAdProposal;
   private final AcceptAdProposal acceptAdProposal;
+  private final RejectAdProposal rejectAdProposal;
   private final PublishAd publishAd;
   private final GetAd getAd;
 
-  public AdsController(MakeAdProposal makeAdProposal, AcceptAdProposal acceptAdProposal, PublishAd publishAd,
+  public AdsController(MakeAdProposal makeAdProposal, AcceptAdProposal acceptAdProposal,
+    RejectAdProposal rejectAdProposal, PublishAd publishAd,
     GetAd getAd) {
     this.makeAdProposal = makeAdProposal;
     this.acceptAdProposal = acceptAdProposal;
+    this.rejectAdProposal = rejectAdProposal;
     this.publishAd = publishAd;
     this.getAd = getAd;
   }
@@ -91,6 +96,15 @@ public class AdsController {
     throws UnknownAdException, InvalidAdStatusException, InvalidProposalStatusException {
 
     acceptAdProposal.execute(new AcceptAdProposalCommand(id, new MusicianId(musicianId)));
+
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @PostMapping("/{id}/proposals/musicians/{musicianId}/reject")
+  public ResponseEntity<Object> rejectMusicianProposal(@PathVariable UUID id, @PathVariable UUID musicianId)
+    throws UnknownAdException, InvalidAdStatusException, InvalidProposalStatusException {
+
+    rejectAdProposal.execute(new RejectAdProposalCommand(id, new MusicianId(musicianId)));
 
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
