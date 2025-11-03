@@ -1,6 +1,7 @@
 package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidProposalStatusException;
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
 import java.util.UUID;
 
@@ -19,11 +20,11 @@ public class Proposal {
     this.status = ProposalStatus.WAITING;
   }
 
-  public static Proposal makeProposal(MusicianId musicianId, Price desiredPrice, Price originalPrice) {
+  public static Proposal makeProposal(MusicianId musicianId, Price desiredPrice, Price originalPrice)
+    throws NonDecentProposalException {
     float priceRatio = desiredPrice.amount() / originalPrice.amount();
     if (priceRatio < DECENT_THRESHOLD_RATIO) {
-      // TODO NonDecentProposalException
-      throw new IllegalArgumentException("Proposal must be decent!"); // TODO validate wording // Customer exception
+      throw new NonDecentProposalException("Proposal must be decent!");
     }
 
     return new Proposal(musicianId, desiredPrice);

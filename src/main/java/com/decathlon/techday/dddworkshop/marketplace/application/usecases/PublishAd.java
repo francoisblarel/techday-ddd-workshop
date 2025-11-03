@@ -6,9 +6,10 @@ import com.decathlon.techday.dddworkshop.marketplace.domain.AdRepository;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.Ad;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.AdFactory;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.MusicianAdsLimitReached;
-import com.decathlon.techday.dddworkshop.musician.domain.MusicianRepository;
+import com.decathlon.techday.dddworkshop.musician.application.services.MusicianAccessor;
 import com.decathlon.techday.dddworkshop.musician.domain.models.Musician;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
+import com.decathlon.techday.dddworkshop.shared.domain.expections.UnknownMusicianException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
@@ -16,23 +17,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class PublishAd {
 
-  private final MusicianRepository musicianRepository;
+  private final MusicianAccessor musicianAccessor;
   private final AdRepository adRepository;
 
-  public PublishAd(MusicianRepository musicianRepository, AdRepository adRepository) {
-    this.musicianRepository = musicianRepository;
+  public PublishAd(MusicianAccessor musicianAccessor, AdRepository adRepository) {
+    this.musicianAccessor = musicianAccessor;
     this.adRepository = adRepository;
   }
 
-  public PublishAdResponse execute(PublishAdCommand command) throws MusicianAdsLimitReached {
+  public PublishAdResponse execute(PublishAdCommand command) throws MusicianAdsLimitReached, UnknownMusicianException {
     MusicianId musicianId = command.adCommand().musicianId();
-    // TODO ArchUnit => no repo outside bounded context
-    Optional<Musician> maybeMusician = musicianRepository.findById(
-      musicianId); // TODO Application Service dans Musician qui existe le findById => Utiliser une interface
+    Optional<Musician> maybeMusician = musicianAccessor.get(musicianId);
     List<Ad> musicianAds = adRepository.findByMusicianId(musicianId);
 
     if (maybeMusician.isEmpty()) {
-      throw new IllegalArgumentException("Unknown musician"); // TODO: custom exception dans le SHARED
+      throw new UnknownMusicianException("Unknown musician " + musicianId);
     }
 
     Ad publishedAd = AdFactory.publishAd(command.adCommand(), musicianAds, maybeMusician.get());

@@ -20,6 +20,7 @@ import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.Ad
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.MakeAdProposalDto;
 import com.decathlon.techday.dddworkshop.marketplace.infrastructure.rest.dtos.PublishAdDto;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
+import com.decathlon.techday.dddworkshop.shared.domain.expections.UnknownMusicianException;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdsController {
 
   public static final String MARKETPLACE = "/v1/marketplaces/ads";
+  private static final String MUSICIAN_ID_HEADER = "x-musician-id";
 
   private final MakeAdProposal makeAdProposal;
   private final AcceptAdProposal acceptAdProposal;
@@ -53,7 +55,6 @@ public class AdsController {
 
   @GetMapping("/{id}")
   public ResponseEntity<AdResponseDto> getAdById(@PathVariable UUID id) {
-
     GetAdResponse adResponse = getAd.handle(new GetAdQuery(id));
 
     Optional<Ad> maybeAd = adResponse.maybeAd();
@@ -64,8 +65,9 @@ public class AdsController {
   }
 
   @PostMapping()
-  public ResponseEntity<UUID> publishAd(@RequestHeader("x-musician-id") UUID musicianId, @RequestBody PublishAdDto dto)
-    throws MusicianAdsLimitReached {
+  public ResponseEntity<UUID> publishAd(@RequestHeader(MUSICIAN_ID_HEADER) UUID musicianId,
+    @RequestBody PublishAdDto dto)
+    throws MusicianAdsLimitReached, UnknownMusicianException {
 
     PublishAdResponse publishAdResponse = publishAd.execute(
       new PublishAdCommand(dto.toAdCommand(new MusicianId(musicianId))));
@@ -74,9 +76,10 @@ public class AdsController {
   }
 
   @PostMapping("/{id}/proposals")
-  public ResponseEntity<Object> makeAdProposal(@PathVariable UUID id, @RequestHeader("x-musician-id") UUID musicianId,
-    @RequestBody
-    MakeAdProposalDto dto) throws UnknownAdException, NonDecentProposalException, InvalidAdStatusException {
+  public ResponseEntity<Object> makeAdProposal(@PathVariable UUID id,
+    @RequestHeader(MUSICIAN_ID_HEADER) UUID musicianId,
+    @RequestBody MakeAdProposalDto dto)
+    throws UnknownAdException, NonDecentProposalException, InvalidAdStatusException {
 
     makeAdProposal.execute(new AdProposalCommand(id, new MusicianId(musicianId), dto.getPrice().toPrice()));
 

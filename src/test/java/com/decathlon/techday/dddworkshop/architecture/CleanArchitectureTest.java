@@ -67,4 +67,12 @@ public class CleanArchitectureTest {
     )
     .should(notHaveSetters);
 
+  @ArchTest
+  public static final ArchRule domain_should_not_depend_on_repositories =
+    noClasses()
+      .that()
+      .resideInAPackage("..domain..")
+      .should()
+      .dependOnClassesThat()
+      .haveNameMatching(".*Repository");
 }

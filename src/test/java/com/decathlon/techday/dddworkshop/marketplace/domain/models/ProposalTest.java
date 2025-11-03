@@ -3,6 +3,7 @@ package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatException;
 
+import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
 import java.util.Currency;
 import java.util.UUID;
@@ -27,7 +28,7 @@ class ProposalTest {
     }
 
     @Test
-    void success() {
+    void success() throws NonDecentProposalException {
       MusicianId musicianId = new MusicianId(UUID.randomUUID());
       Price originalPrice = new Price(150.00f, Currency.getInstance("EUR"));
       Price desiredPrice = new Price(120.00f, Currency.getInstance("EUR"));
