@@ -13,6 +13,14 @@ public class PriceDto {
     this.currency = currency;
   }
 
+  public float getAmount() {
+    return amount;
+  }
+
+  public String getCurrency() {
+    return currency;
+  }
+
   public Price toPrice() {
     return new Price(amount, Currency.getInstance(currency));
   }

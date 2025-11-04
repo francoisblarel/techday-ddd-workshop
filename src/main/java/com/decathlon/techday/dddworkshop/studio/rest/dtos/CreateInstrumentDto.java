@@ -16,6 +16,18 @@ public class CreateInstrumentDto {
     this.currency = currency;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public float getAmount() {
+    return amount;
+  }
+
+  public String getCurrency() {
+    return currency;
+  }
+
   public InstrumentDbEntity toEntity(UUID musicianId) {
     return new InstrumentDbEntity(UUID.randomUUID(), musicianId, name, amount, Currency.getInstance(currency));
   }

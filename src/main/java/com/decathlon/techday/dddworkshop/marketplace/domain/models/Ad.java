@@ -93,7 +93,10 @@ public class Ad {
       throw new InvalidAdStatusException("Cannot accept a proposal because it does not exist");
     }
 
-    maybeProposal.get().accept();
+    Proposal proposal = maybeProposal.get();
+
+    proposal.accept();
+    this.price = proposal.getDesiredPrice();
 
     this.sell();
   }
