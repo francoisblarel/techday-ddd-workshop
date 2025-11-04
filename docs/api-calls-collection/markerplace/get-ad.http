@@ -1,3 +1,0 @@
-### GET ad
-GET http://localhost:8080/v1/marketplaces/ads/{{ad_id}}
-Content-Type: application/json
