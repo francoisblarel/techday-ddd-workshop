@@ -18,6 +18,7 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+
 ---
 
 # DDD Hands-on
@@ -31,8 +32,45 @@ Decathlon Tech days 2025
 
 </div>
 
+
+ <style>
+  h2 {
+    display: inline-block;
+    background-color: #222; 
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 2.5rem; 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+    clip-path: polygon(
+        2% 0%,   /* Point en haut à gauche */
+        93% 5%,  /* Point en haut à droite */
+        100% 25%, /* Point milieu-droit (haut) */
+        100% 79%, /* Point milieu-droit (bas) */
+        85% 98%, /* Point en bas à droite */
+        5% 100%,  /* Point en bas à gauche */
+        0% 75%,  /* Point milieu-gauche (bas) */
+        0% 21%   /* Point milieu-gauche (haut) */
+    );
+  }
+  .source {
+    position: fixed;
+    bottom: 0rem;
+    right: 1rem;
+    font-size: 0.8rem;
+    color: black;
+    opacity: 0.6;
+  }
+  </style>
+
 <!--
-Bienvenue à ce hands-on sur le Domain-Driven Design (DDD).
+On a pensé à une application révolutionnaire pour les musiciens : 
+Une plateforme ou chaque musicien peut exposer son studio avec tous ses instruments. Montrer ses réglages, 
+ses configurations, ses effets, ses amplis, etc.
+
+Mais ce n'est pas tout, il y a aussi une partie marketplace qui permet aux musiciens de vendre leurs instruments d'occasion entre eux via des annonces.
+Et cette appli, on l'a appelé...
 -->
 
 ---
@@ -55,6 +93,10 @@ layout: center
 class: text-center
 ---
 
-# Thank you
+## Thank you
 
-[Resources](https://github.com/francoisblarel/techday-ddd-workshop/blob/main/RESOURCES.md) · [GitHub](https://github.com/francoisblarel/techday-ddd-workshop) 
+[Resources](https://github.com/francoisblarel/techday-ddd-workshop/blob/main/RESOURCES.md) · [GitHub](https://github.com/francoisblarel/techday-ddd-workshop)
+· [Channel Slack DDD](https://decathlondigital.slack.com/archives/C091F769QP2)
+
+
+<div class="source">image bank: https://pixabay.com/</div>

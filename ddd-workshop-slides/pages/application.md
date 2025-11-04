@@ -3,36 +3,49 @@ layout: center
 class: text-center
 ---
 
-# BackStage
-
-### Application de vente d'instruments de musique entre musiciens
+![backStage.png](../assets/backStage.png)
 
 <!--
-- un musicien peut ajouter des instruments dans son studio afin de partager des infos.
-- un musicien peut publier une annonce pour vendre un instrument de son studio.
-- une annonce peut être mise en pause (si le vendeur est indisponible pendant une période).
-- le musicien vendeur définit un prix pour son instrument lors de la publication de l'annonce.
-- Il peut appliquer une réduction sur le prix de son annonce.
-- un musicien peut directement acheter un instrument depuis l'annonce.
-- un musicien peut faire une proposition de prix, sous forme d'un pourcentage de réduction sur le prix affiché.
-- le musicien vendeur peut accepter ou refuser une proposition de prix.
-- un musicien peut mettre des alertes sur un instrument afin d'être notifié lorsqu'une annonce est publiée pour cet
-  instrument.
+
+Comme on a déjà un super nom, on a fait 90% du travail.
+Ce qu'on vous propose aujourd'hui, c'est de faire les 10% restants ensemble, en utilisant les méthodologies du Domain-Driven Design.
+
 -->
 
 ---
-class: text-center
-layout: center
+layout: image-right
+image: ../assets/mixer.jpg
 ---
 
-### Concepts métiers ?
+## Business concepts ?
+
+<br>
+<br>
+
+### <v-click> Musician</v-click>
+
+### <v-click> Instrument</v-click>
+
+### <v-click> Studio</v-click>
+
+### <v-click> Marketplace</v-click>
+
+### <v-click> Ad</v-click>
+
+### <v-click> to apply a discount</v-click>
+
+### <v-click> make a price proposition</v-click>
+
+### <v-click> place an alert</v-click>
+
+### <v-click>pay</v-click>
 
 <!--
 Quels sont les concepts métiers importants que l'on retient ?
 
 Musicien
-Instrument
 Studio
+Instrument
 Annonce
 Prix
 Faire une Proposition de prix
@@ -44,12 +57,30 @@ class: text-center
 layout: center
 ---
 
-### UBIQUITOUS LANGUAGE
+## UBIQUITOUS LANGUAGE
 
 <!--
 Ce qu'on vient de faire, c'est commencer à construire un langage commun entre nous, développeurs, et les experts métiers.
 
 Le language ubiquitaire.
+
+-->
+
+--- 
+layout: image
+image: ../assets/projet-informatique.jpg
+backgroundSize: contain
+---
+
+<!--
+
+Ce qu'on veut, c'est lever toutes les ambiguités sur le vocabulaire métier.
+Avoir des termes précis, partagés, et compris par tous.
+
+Le piège c'est d'avoir des termes qui veulent dire plusieurs choses, selon les personnes à qui on parle.
+
+Et en tant que développeur, on a une grosse responsabilité sur ce vocabulaire, 
+car on a tendance à introduire des termes techniques (biais du dev) qui n'ont pas de sens pour les experts métiers.
 
 -->
 
@@ -65,13 +96,14 @@ class: text-center
 layout: center
 ---
 
-# Sub-domains
+## Sub-domains
 
 <!--
 Maintenant qu'on a un vocabulaire commun, on va pouvoir commencer à structurer notre domaine métier.
-On va commencer par découper le domaine métier en sous-domaines, puis on va définir des Bounded Contexts.
+On va commencer par découper le domaine métier en sous-domaines.
 
-Un sous-domaine est une partie du domaine métier qui a une responsabilité claire. Un ensemble de capacités métier cohérentes.
+Un sous-domaine est une partie du domaine métier qui a une responsabilité spécifique. 
+Un ensemble de capacités métier cohérentes. 
 
 Quels sont les sous-domaines dans notre application ?
 
@@ -85,14 +117,16 @@ Payments
 
 ---
 class: text-center
-layout: center
+layout: image-left
+image: ../assets/guitar.jpg
 ---
 
-# Sub-domains typologies
+## Sub-domains typologies
 
-  <div v-click>Core Domain</div>
-  <div v-click>Supporting Subdomain</div>
-  <div v-click>Generic Subdomain</div>
+<br><br>
+<h3 v-click>Core Domain</h3>
+<h3 v-click>Supporting Subdomain</h3>
+<h3 v-click>Generic Subdomain</h3>
 
 <!--
 On peut découper le domaine métier en sous-domaines.
@@ -103,26 +137,34 @@ pas différenciante. (ex: un catalogue de produits)
 
 [click] Le Generic Subdomain est un sous-domaine qui n'apporte pas de valeur différenciante, et qui peut être externalisé. (ex: gestion des notifications, gestion des paiements, etc...)
 
-Ici quel est notre code-domain?
-Quels sont les supporting subdomains?
-Quels sont les generic subdomains?
 -->
 
 ---
-class: text-center
-layout: center
-transition: slide-up
-level: 2
+layout: image
+image: ../assets/core-domain-chart.jpg
+backgroundSize: 65% 90%
 ---
 
-# Bounded Context
+<div class="source">source: https://ddd-crew.github.io/ddd-starter-modelling-process/</div>
+
+<!--
+Ici quel est notre core-domain?
+Quels sont les supporting subdomains?
+Quels sont les generic subdomains?
+-->
+---
+class: text-center
+layout: center
+---
+
+## Bounded Context
 
 <!--
 Maintenant qu'on a découpé le domaine métier en sous-domaines, on va pouvoir définir des Bounded Contexts.
 
 Un Bounded Context est une limite explicite autour d'un langage ubiquitaire via un modèle spécifique.
 
-Ce qu'on cherche à éviter, c'est d'avoir un modèle unique qui couvre tout le domaine métier.
+Ce qu'on cherche à éviter, c'est d'avoir un modèle unique qui couvre tout le domaine métier. La God Class.
 -->
 
 ---
@@ -132,102 +174,87 @@ layout: center
 
 ![bounded-context.jpg](../assets/bounded-context.jpg)
 
+<!--
+On veut éviter ça...
+
+Mais c'est quoi un modèle?
+-->
+
 ---
-class: text-center
-layout: center
+layout: image
+image: ../assets/paris.jpg
+backgroundSize: contain
 ---
 
-# Bounded Context
+---
+layout: image
+image: ../assets/paris-map.jpg
+backgroundSize: contain
+---
 
-<br>
-<br>
+---
+layout: image
+image: ../assets/paris-metro.png
+backgroundSize: contain
+---
 
-<div v-click>Limite explicite du modèle</div>
+---
+layout: quote
+---
 
-<div v-click>Ubiquitous Language spécifique</div>
+# "All the models are wrong, but some are useful"
 
-<div v-click>Responsabilité claire</div>
+George E. P. Box
 
 <!--
 
-Il a une intégration explicite avec les autres Bounded Contexts, et une responsabilité claire.
-
-Il est fait partie du design et donc de l'espace de la solution.
-
-Il peut être aligné avec un sous-domaine, mais ce n'est pas obligatoire.
-
-On va organiser les équipes autour des Bounded Contexts.
-
-Comment on travaille nos modèles métiers et nos Bounded Contexts ?
-par des ateliers de modélisation comme par exemple l'event storming ou l'example mapping...
-
-Il y a énormément à dire sur la partie stratégique du DDD, 
-, mais on va se concentrer aujourd'hui sur la partie tactique.
-
-On vous donnera en fin d'atelier des ressources pour aller plus loin (ddd-starter-modeling-process)
-
-TODO: montrer le resultat d'un event storming sur ce domaine
+Le bounded context est une frontière explicite autour d'un modèle spécifique.
+Il va nous permettre d'isoler les différents modèles métiers, de les simplifier, et d'éviter les conflits de langage.
 
 -->
 
-
 ---
-layout: two-cols
-class: text-center
+layout: image-right
+image: ../assets/mic.jpg
 ---
 
-::default::
-<div v-click v-click.hide="12">
 
 ## Strategic patterns
 
-<br>
-    <div v-click="3">Bounded Context</div>
-    <div v-click="4">Ubiquitous Language</div>
-    <div v-click="5">Context Map</div>
+<!--
 
-</div>
-<br>
-<br>
+Tout ce dont on a parlé jusque là, ça fait partie des patterns stratégiques.
 
-::right::
-<div v-click="2" >
+C'est un des pans, si ce n'est le pan le plus important du DDD.
+
+Il y a plein de chose à creuser là-dedans, comme par exemple l'Event Storming.
+
+-->
+
+---
+layout: image
+image: ../assets/event-storming.png
+backgroundSize: contain
+---
+
+
+---
+layout: image-left
+image: ../assets/amp.jpg
+---
 
 ## Tactical patterns
-
 <br>
-    <div v-click="6">Entities</div>
-    <div v-click="7">Value Objects</div>
-    <div v-click="8">Aggregates</div>
-    <div v-click="9">Domain Services</div>
-    <div v-click="10">Repositories</div>
-    <div v-click="11">Domain Events</div>
-
-</div>
+<br>
+<h3 v-click>Entities</h3>
+<h3 v-click>Value objects</h3>
+<h3 v-click>Aggregates</h3>
+<h3 v-click>Domain service</h3>
+<h3 v-click>Domain events</h3>
 
 <!--
-[click] Dans la boite à outils du DDD, on trouve des patterns stratégiques 
-[click] et tactiques.
 
-Les patterns stratégiques vont nous permettre de mieux comprendre le domaine métier,
-de mieux communiquer avec les experts métiers,
-de trouver un language commun et de construire un modèle partagé.
-
-Pour ça on va avoir comme outils
-[click] le Bounded Context,
-[click] le Language Ubiquitaire
-[click] et la Context Map.
-
-Les patterns tactiques vont nous permettre de structurer notre code
-afin de refléter le modèle métier que l'on a construit, grâce
-[click] aux Entities,
-[click] aux Value Objects,
-[click] aux Aggregates,
-[click] aux Domain Services,
-[click] aux Repositories
-[click] et aux Domain Events.
-
-[click] On a choisi aujourd'hui de se concentrer beaucoup plus longuement sur les patterns tactiques.
+Mais on a choisi aujourd'hui de se concentrer beaucoup plus longuement sur les patterns tactiques.
 Car c'est souvent le point d'entrée des développeurs dans le DDD, et la conference est orientée code.
 
 Maintenant il est important de comprendre que le DDD ne se limite pas aux patterns tactiques, et qu'au contraire

@@ -3,21 +3,18 @@ layout: center
 class: text-center
 ---
 
-# Wrap-up
+## Wrap-up
 
 ---
 layout: center
 class: text-center
 ---
 
-# What is DDD?
+## Domain Driven Design
 
----
-layout: center
-class: text-center
----
-
-### Domain Driven Design
+<br>
+<br>
+<br>
 
 <v-click>
 
@@ -46,54 +43,73 @@ class: text-center
 ![images](../assets/sangliers.jpg)
 
 ---
-layout: center
-class: text-center
+layout: image-left
+image: ../assets/guitar.jpg
 ---
 
-### Domain Driven Design
+## Domain Driven Design
 
 <br>
-<div v-click>Not a framework...</div>
-<div v-click>more like a toolbox</div>
-<div v-click>not only code</div>
+<br>
+<br>
+
+<h3 v-click>Not a framework...</h3>
+<h3 v-click>more like a toolbox</h3>
+<h3 v-click>not only code</h3>
 
 <!--
-TODO: montrer le resultat d'un event storming sur ce domaine
 
-On remontre l'event storming et le fait que tout était déjà là.
+
+-->
+
+---
+layout: image
+image: ../assets/event-storming.png
+backgroundSize: contain
+---
+
+<!--
+Tout était déjà là.
 L'importance des patterns stratégiques pour bien comprendre le domaine avant de se lancer dans la solution.
 
 On a rendu explicite tout ce qui était implicite dans nos têtes.
-
 -->
+
+
 ---
-layout: center
-class: text-center
+layout: image-right
+image: ../assets/bass.jpg
 ---
 
-### Warnings
+## Warnings
 
 <br>
-<div v-click>Not a silver bullet</div>
-<div v-click>sometimes CRUD is more relevant</div>
-<div v-click>easy to understand hard to master</div>
-<div v-click>iterative</div>
-<div v-click>be careful of the "by the book"</div>
+<br>
+<br>
+
+<h3 v-click>Not a silver bullet</h3>
+<h3 v-click>sometimes CRUD is more relevant</h3>
+<h3 v-click>easy to understand hard to master</h3>
+<h3 v-click>iterative</h3>
+<h3 v-click>be careful of the "by the book"</h3>
 
 <!--
 
 -->
 ---
-layout: center
-class: text-center
+layout: image-left
+image: ../assets/drums.jpg
 ---
 
-# What about legacy code?
+## What about legacy code?
 
 <br>
-<div v-click>use value object</div>
-<div v-click>move invariants</div>
-<div v-click>identify and isolate bounded contexts</div>
+<br>
+<br>
+
+<h3 v-click>use value object</h3>
+<h3 v-click>move invariants</h3>
+<h3 v-click>identify and isolate bounded contexts</h3>
 
 <!--
 Comment migrer un legacy vers du DDD ?
@@ -113,8 +129,10 @@ layout: center
 class: text-center
 ---
 
-# Last words
+## Last words
 
+<br>
+<br>
 <br>
 
 <div v-click><i>Take care of your model if you don't want to eat your cat's sh*t</i></div>
