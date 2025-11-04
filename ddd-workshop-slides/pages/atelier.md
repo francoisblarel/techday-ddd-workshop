@@ -31,6 +31,8 @@ class: text-center
 
 <!--
 présentation rapide de l'architecture proposée
+
+TIMING: 20 min
 -->
 
 ---
@@ -74,6 +76,7 @@ Les modifications doivent se faire via des méthodes métier.
 
 Deux entités sont égales si elles ont la même identité.
 
+TIMING: 35 min
 -->
 
 
@@ -114,6 +117,8 @@ Un Value Object est un objet défini par sa valeur. Deux VO avec la même valeur
 Ils sont immuables. On ne peut pas modifier un VO, on crée un nouveau VO avec la nouvelle valeur.
 
 Ils n'ont pas de cycle de vie. Ils n'ont pas d'identité propre. Ils existent uniquement dans le contexte d'une autre entité.
+
+TIMING: 1h
 -->
 
 
@@ -170,6 +175,7 @@ Plus besoin de code défensif pour vérifier les invariants, c'est l'aggregate q
 
 Plus facile à tester, plus facile à maintenir.
 
+TIMING: 1h30 min
 -->
 
 ---
@@ -223,4 +229,5 @@ Il ne doit pas contenir de logique d'infrastructure (accès aux données, envoi 
 En celà il se distingue d'un application service (ou service d'application) qui lui contient de la logique d'infrastructure 
 et qui va orchestrer les appels aux domain services, aux repositories, etc...
 
+TIMING: 1h40 min
 -->

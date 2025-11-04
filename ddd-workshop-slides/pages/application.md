@@ -219,6 +219,10 @@ layout: image
 image: ../assets/core-domain-chart.jpg
 backgroundSize: 65% 90%
 ---
+<div v-click style="position: fixed;right:300px;top:100px">MARKETPLACE</div>
+<div v-click style="position: fixed;right:300px;bottom:100px">STUDIO</div>
+<div v-click style="position: fixed;left:420px;top:200px">ALERTING</div>
+<div v-click style="position: fixed;left:315px;top:120px">PAYMENT</div>
 
 <div class="source">source: https://ddd-crew.github.io/ddd-starter-modelling-process/</div>
 
