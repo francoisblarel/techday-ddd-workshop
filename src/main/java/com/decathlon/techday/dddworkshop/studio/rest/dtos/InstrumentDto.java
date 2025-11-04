@@ -9,7 +9,7 @@ public class InstrumentDto {
 
   public InstrumentDto(InstrumentDbEntity instrument) {
     this.name = instrument.getName();
-    this.price = instrument.getPrice() + " " + instrument.getCurrency().toString();
+    this.price = instrument.getPrice() + " " + instrument.getCurrency().getCurrencyCode();
   }
 
   public String getName() {

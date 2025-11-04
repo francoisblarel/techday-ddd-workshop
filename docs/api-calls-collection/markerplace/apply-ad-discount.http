@@ -1,0 +1,7 @@
+### POST Apply discount
+POST http://localhost:8080/v1/marketplaces/ads/{{ad_id}}/discounts
+Content-Type: application/json
+
+{
+  "discount": 20.00
+}
