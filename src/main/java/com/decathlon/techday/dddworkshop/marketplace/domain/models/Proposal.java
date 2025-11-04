@@ -3,18 +3,15 @@ package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidProposalStatusException;
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.NonDecentProposalException;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
-import java.util.UUID;
 
 public class Proposal {
 
   private static final double DECENT_THRESHOLD_RATIO = 0.6;
-  private final UUID id;
   private final MusicianId musicianId;
   private final Price desiredPrice;
   private ProposalStatus status;
 
   private Proposal(MusicianId musicianId, Price desiredPrice) {
-    this.id = UUID.randomUUID();
     this.musicianId = musicianId;
     this.desiredPrice = desiredPrice;
     this.status = ProposalStatus.WAITING;
@@ -28,10 +25,6 @@ public class Proposal {
     }
 
     return new Proposal(musicianId, desiredPrice);
-  }
-
-  public ProposalStatus getStatus() {
-    return status;
   }
 
   public void accept() throws InvalidProposalStatusException {
@@ -48,6 +41,10 @@ public class Proposal {
     }
 
     this.status = ProposalStatus.REJECTED;
+  }
+
+  public ProposalStatus getStatus() {
+    return status;
   }
 
   public MusicianId getMusicianId() {

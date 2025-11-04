@@ -23,7 +23,7 @@ class ProposalTest {
 
       assertThatException()
         .isThrownBy(() -> Proposal.makeProposal(musicianId, desiredPrice, originalPrice))
-        .isInstanceOf(IllegalArgumentException.class)
+        .isInstanceOf(NonDecentProposalException.class)
         .withMessage("Proposal must be decent!");
     }
 

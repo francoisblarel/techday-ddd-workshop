@@ -26,7 +26,7 @@ class AdFactoryTest {
       AdFixture.IBANEZ(newMusician.getId()));
 
     assertThatException()
-      .isThrownBy(() -> AdFactory.publishAd(adCommand, musicianAds, newMusician))
+      .isThrownBy(() -> AdFactory.publishAd(adCommand, musicianAds, newMusician.isPremium()))
       .isInstanceOf(MusicianAdsLimitReached.class)
       .withMessage("Free ads limit reached for non premium musician");
   }
@@ -40,7 +40,7 @@ class AdFactoryTest {
     AdCommand adCommand = new AdCommand(newMusician.getId(), instrument, price);
     List<Ad> musicianAds = List.of(AdFixture.FENDER(newMusician.getId()));
 
-    Ad result = AdFactory.publishAd(adCommand, musicianAds, newMusician);
+    Ad result = AdFactory.publishAd(adCommand, musicianAds, newMusician.isPremium());
 
     assertThat(result.getInstrument()).isEqualTo(instrument);
     assertThat(result.getMusicianId()).isEqualTo(newMusician.getId());
@@ -58,7 +58,7 @@ class AdFactoryTest {
       AdFixture.FENDER(premiumMusician.getId()),
       AdFixture.GIBSON(premiumMusician.getId()),
       AdFixture.IBANEZ(premiumMusician.getId()));
-    Ad result = AdFactory.publishAd(adCommand, musicianAds, premiumMusician);
+    Ad result = AdFactory.publishAd(adCommand, musicianAds, premiumMusician.isPremium());
 
     assertThat(result.getInstrument()).isEqualTo(instrument);
     assertThat(result.getMusicianId()).isEqualTo(premiumMusician.getId());

@@ -10,7 +10,8 @@ public interface AdRepository {
 
   void save(Ad ad);
 
+  Optional<Ad> findById(UUID id);
+
   List<Ad> findByMusicianId(MusicianId musicianId);
 
-  Optional<Ad> findById(UUID id);
 }
