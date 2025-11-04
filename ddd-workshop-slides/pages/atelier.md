@@ -44,9 +44,10 @@ class: text-center
 <br>
 <br>
 ```
-A musician can publish an ad to sell an instrument.
-He defines a price for his instrument when publishing the ad.
-An ad has a title, a description, a price.
+- A musician can publish an Ad to sell an instrument.
+- An Ad should have a title, an instrument, and a price.
+- An Ad can be sold
+- An Ad is available to sell until it is sold.
 ```
 
 ---
@@ -68,6 +69,8 @@ image: ../assets/bass.jpg
 Une entité est un objet qui a une identité propre et un cycle de vie.
 
 Elle est mutable, on peut modifier ses propriétés au cours de son cycle de vie.
+Par contre, elle n'est pas mutable via des setters publics. 
+Les modifications doivent se faire via des méthodes métier.
 
 Deux entités sont égales si elles ont la même identité.
 
@@ -85,8 +88,9 @@ class: text-center
 <br>
 <br>
 ```
-A musicien can apply a discount on the price of his ad.
-The discount is a percentage of the price.
+- A musician can apply a discount on the price of his ad.
+- The discount is a percentage of the price (between 0% and 100%).
+- A price cannot be negative.
 ```
 
 ---
@@ -118,16 +122,24 @@ layout: center
 class: text-center
 ---
 
-## 3. The proposition
+## 3. The proposal
 
 <br>
 <br>
 <br>
 ```
-A musician can propose a price for an instrument he wants to buy.
-A musician can only make one proposal per ad.
-The selling musician can accept or refuse the proposal.
+- A proposal has a proposed price.
+- A proposal is placed by a musician.
+- A placed proposal is waiting for a decision.
+- A proposal can be accepted or rejected (if in waiting state).
 ```
+
+<!--
+
+Poser la question: proposal est-il une entité ou un VO?
+
+-->
+
 ---
 layout: image-right
 image: ../assets/guitar.jpg
@@ -176,6 +188,13 @@ A musician can become a premium user by paying a subscription.
 A premium user can publish more ads than a free user.
 A basic user can publish up to 3 ads.
 ```
+
+<!--
+
+Question: cette règle métier peut-elle être implémentée dans un aggregat existant? Lequel?
+Qu'est-ce que ça implique?
+
+-->
 
 ---
 layout: image-left
