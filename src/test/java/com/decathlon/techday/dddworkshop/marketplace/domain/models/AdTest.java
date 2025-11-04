@@ -19,10 +19,21 @@ class AdTest {
   @Test
   @DisplayName("When creating an Ad, the status is Available")
   void constructor() {
-    Ad cut = new Ad(musicianId, "Fender American Professional 2", new BigDecimal("1999.99"),
-      Currency.getInstance("EUR"));
+    Ad cut = new Ad(musicianId, "Fender American Professional 2", new Price(new BigDecimal("1999.99"),
+      Currency.getInstance("EUR")));
 
     assertThat(cut.getStatus()).isEqualTo(AdStatus.AVAILABLE);
+  }
+
+  @Test
+  @DisplayName("When applying discount, the price is updated")
+  void applyDiscount() {
+    Price originalPrice = new Price(new BigDecimal("1999.99"), Currency.getInstance("EUR"));
+    Ad cut = new Ad(musicianId, "Fender American Professional 2", originalPrice);
+
+    cut.applyDiscount(20f);
+
+    assertThat(cut.getPrice()).isNotEqualTo(originalPrice);
   }
 
   @Nested
@@ -31,8 +42,8 @@ class AdTest {
     @Test
     @DisplayName("When successfully selling an Ad, it is now SOLD_OUT")
     void success() throws InvalidAdStatusException {
-      Ad cut = new Ad(musicianId, "Fender American Professional 2", new BigDecimal("1999.99"),
-        Currency.getInstance("EUR"));
+      Ad cut = new Ad(musicianId, "Fender American Professional 2", new Price(new BigDecimal("1999.99"),
+        Currency.getInstance("EUR")));
 
       cut.sell();
 
@@ -42,8 +53,8 @@ class AdTest {
     @Test
     @DisplayName("When selling a non-available Ad, it throws an exception")
     void nonAvailableAd() throws InvalidAdStatusException {
-      Ad cut = new Ad(musicianId, "Fender American Professional 2", new BigDecimal("1999.99"),
-        Currency.getInstance("EUR"));
+      Ad cut = new Ad(musicianId, "Fender American Professional 2", new Price(new BigDecimal("1999.99"),
+        Currency.getInstance("EUR")));
 
       cut.sell();
 
