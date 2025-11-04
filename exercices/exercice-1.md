@@ -12,14 +12,15 @@ Implement a simple domain model for the Ad entity based on the following require
 ### 1. Create the Ad class
 
 - Create an `Ad` class with the following properties:
+  - `musician`: MusicianId (see `shared` package)
   - `title`: string
   - `instrument`: string (for simplicity, we use a string to represent the instrument)
   - `price`: BigDecimal
-  - currency: Currency
+  - `currency`: Currency
   - `status`: AVAILABLE | SOLD_OUT (enum)
 
 As we don't want the Ad to be in an invalid state, make sure that the properties are set through the constructor and are
-immutable.
+immutable from the outside (no setter).
 
 ### 2. Add the sell method
 
