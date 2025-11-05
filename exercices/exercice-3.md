@@ -13,7 +13,7 @@ Introduce a new entity `Proposal` based on the following requirements:
 
 - Create an `Proposal` class with the following properties:
   - `musicianId`: MusicianId
-  - `proposedPrice`: Price
+  - `desiredPrice`: Price
   - `status`: WAITING | ACCEPTED | REJECTED (enum)
 - Add methods in the `Proposal` class to `accept` and `reject` the proposal, changing its status accordingly.
 
@@ -32,3 +32,15 @@ Add the `acceptProposal(MusicianId)` and `rejectProposal(MusicianId)` methods to
 acceptance/rejection of a proposal
 
 The `Ad` entity should be responsible for managing its proposals, ensuring that the business rules are enforced.
+
+### Going further
+
+Ensure that a proposal is decent: 
+
+```
+- A price cannot be proposed if it is less than 40% of the original ad price.
+```
+
+Add a static factory method `makeProposal(musicianId, desiredPrice, originalAdPrice)` to the `Proposal` class.
+
+This method will be responsible for creating a Proposal instance and must ensure this new invariant is enforced before creation.
