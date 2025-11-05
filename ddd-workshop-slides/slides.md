@@ -25,6 +25,10 @@ mdc: true
 
 Decathlon Tech days 2025
 
+<div>
+<a href="https://urls.fr/4dzer_">https://urls.fr/4dzer_</a>
+</div>
+
 <div class="abs-br m-6 text-xl">
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
     <carbon:edit />

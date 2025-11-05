@@ -32,3 +32,10 @@ Add the `acceptProposal(MusicianId)` and `rejectProposal(MusicianId)` methods to
 acceptance/rejection of a proposal
 
 The `Ad` entity should be responsible for managing its proposals, ensuring that the business rules are enforced.
+
+### Going further (optional)
+
+We don't want proposals to be created with indecent prices.
+
+Add a validation in the `makeProposal` method to ensure that the proposed price is within a reasonable range
+(e.g., not less than 60% of the Ad's original price).
