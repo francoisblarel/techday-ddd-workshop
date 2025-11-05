@@ -10,5 +10,24 @@
 ./mvnw spring-boot:run
 ```
 
-Access the H2 console at: http://localhost:8080/h2-console (url and credentials can be found in
-`application.properties`)
+### How to run the tests
+
+```
+./mvnw test
+```
+
+### Exercices
+
+The exercices are located in the [exercices](exercices) folder.
+Each exercice has its own instructions.
+
+### How to run the slides (nodejs required)
+
+in the [ddd-workshop-slides](ddd-workshop-slides) folder:
+
+```
+ npm install pnpm -g;
+ pnpm dev
+```
+
+then access the slides at `http://localhost:3030/` and the presenter view at `http://localhost:3030/presenter`.
