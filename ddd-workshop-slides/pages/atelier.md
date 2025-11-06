@@ -71,10 +71,9 @@ image: ../assets/bass.jpg
 Une entité est un objet qui a une identité propre et un cycle de vie.
 
 Elle est mutable, on peut modifier ses propriétés au cours de son cycle de vie.
-Par contre, elle n'est pas mutable via des setters publics. 
-Les modifications doivent se faire via des méthodes métier.
-
-Deux entités sont égales si elles ont la même identité.
+Par contre, ce n'est pas une entité Hibernate. 
+Ici la notion d'encapsulation est importante. On n'expose pas les propriétés, mais des méthodes métier.
+On veut exprimer l'intention métier.
 
 TIMING: 35 min
 -->
