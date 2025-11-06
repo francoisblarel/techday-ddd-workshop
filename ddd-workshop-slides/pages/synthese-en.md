@@ -5,6 +5,36 @@ class: text-center
 
 ## Wrap-up
 
+---
+layout: center
+class: text-center
+---
+
+## Domain Driven Design
+
+<br>
+<br>
+<br>
+
+<v-click>
+
+The DDD <span v-mark.red="2">methodology</span> offers a <span v-mark.red="3">set of practices</span> for a
+collaborative approach to software
+development,
+from the perspective of <span v-mark.circle.orange="4"> the business </span>.
+
+</v-click>
+
+<!--
+
+-->
+
+---
+layout: center
+class: text-center
+---
+
+![images](../assets/sangliers.jpg)
 
 ---
 layout: image-left
@@ -33,10 +63,9 @@ backgroundSize: contain
 ---
 
 <!--
-Tout était déjà là.
-L'importance des patterns stratégiques pour bien comprendre le domaine avant de se lancer dans la solution.
-
-On a rendu explicite tout ce qui était implicite dans nos têtes.
+Everything was already there.
+The importance of strategic patterns to understand the domain before starting the solution.
+We made explicit everything that was implicit in our heads.
 -->
 
 
@@ -76,16 +105,13 @@ image: ../assets/drums.jpg
 <h3 v-click>identify and isolate bounded contexts</h3>
 
 <!--
-Comment migrer un legacy vers du DDD ?
-
-On n'est pas obligé d'utiliser tous les patterns DDD.
-- Commencer par les plus simples: les value objects.
-
-- Est-ce possible de déplacer les invariants métier dans les entités?
-
-- Bien identifier les Bounded Contexts
-- Isoler les Bounded Contexts
-- strangler pattern
+How to migrate a legacy to DDD?
+You don't have to use all DDD patterns.
+- Start with the simplest: value objects. 
+- Is it possible to move business invariants into entities?
+- Clearly identify Bounded Contexts
+- Isolate Bounded Contexts
+- Use Strangler pattern
 -->
 
 ---

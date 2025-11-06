@@ -31,6 +31,8 @@ class: text-center
 
 <!--
 présentation rapide de l'architecture proposée
+
+TIMING: 20 min
 -->
 
 ---
@@ -44,9 +46,10 @@ class: text-center
 <br>
 <br>
 ```
-A musician can publish an ad to sell an instrument.
-He defines a price for his instrument when publishing the ad.
-An ad has a title, a description, a price.
+- A musician can publish an Ad to sell an instrument.
+- An Ad should have a title, an instrument, and a price.
+- An Ad can be sold
+- An Ad is available to sell until it is sold.
 ```
 
 ---
@@ -68,9 +71,13 @@ image: ../assets/bass.jpg
 Une entité est un objet qui a une identité propre et un cycle de vie.
 
 Elle est mutable, on peut modifier ses propriétés au cours de son cycle de vie.
+Par contre, ce n'est pas une entité Hibernate. 
+Ici la notion d'encapsulation est importante. On n'expose pas les propriétés, mais des méthodes métier.
+On veut exprimer l'intention métier.
 
-Deux entités sont égales si elles ont la même identité.
+Elle porte ses invariants métier. C'est elle qui garantit la cohérence de son état.
 
+TIMING: 35 min
 -->
 
 
@@ -85,8 +92,9 @@ class: text-center
 <br>
 <br>
 ```
-A musicien can apply a discount on the price of his ad.
-The discount is a percentage of the price.
+- A musician can apply a discount on the price of his ad.
+- The discount is a percentage of the price (between 0% and 100%).
+- A price cannot be negative.
 ```
 
 ---
@@ -110,6 +118,8 @@ Un Value Object est un objet défini par sa valeur. Deux VO avec la même valeur
 Ils sont immuables. On ne peut pas modifier un VO, on crée un nouveau VO avec la nouvelle valeur.
 
 Ils n'ont pas de cycle de vie. Ils n'ont pas d'identité propre. Ils existent uniquement dans le contexte d'une autre entité.
+
+TIMING: 1h
 -->
 
 
@@ -118,16 +128,24 @@ layout: center
 class: text-center
 ---
 
-## 3. The proposition
+## 3. The proposal
 
 <br>
 <br>
 <br>
 ```
-A musician can propose a price for an instrument he wants to buy.
-A musician can only make one proposal per ad.
-The selling musician can accept or refuse the proposal.
+- A proposal has a proposed price.
+- A proposal is placed by a musician.
+- A placed proposal is waiting for a decision.
+- A proposal can be accepted or rejected (if in waiting state).
 ```
+
+<!--
+
+Poser la question: proposal est-il une entité ou un VO?
+
+-->
+
 ---
 layout: image-right
 image: ../assets/guitar.jpg
@@ -140,7 +158,7 @@ image: ../assets/guitar.jpg
 <br>
 
 <h3 v-click>contains VO and/or entities</h3>
-<h3 v-click>responsible for its invariants</h3>
+<h3 v-click>root is responsible for its invariants</h3>
 <h3 v-click>garantees consistency</h3>
 <h3 v-click>defines transactional boundaries</h3>
 
@@ -148,7 +166,7 @@ image: ../assets/guitar.jpg
 <!--
 Un aggregate est un ensemble de VO et/ou d'entités qui forment une unité cohérente.
 
-Il est responsable de ses invariants. C'est lui qui garantit la cohérence de l'ensemble.
+La racine est responsable de ses invariants. C'est lui qui garantit la cohérence de l'ensemble.
 
 Il définit les frontières transactionnelles et structurelles.
 
@@ -158,6 +176,7 @@ Plus besoin de code défensif pour vérifier les invariants, c'est l'aggregate q
 
 Plus facile à tester, plus facile à maintenir.
 
+TIMING: 1h30 min
 -->
 
 ---
@@ -176,6 +195,13 @@ A musician can become a premium user by paying a subscription.
 A premium user can publish more ads than a free user.
 A basic user can publish up to 3 ads.
 ```
+
+<!--
+
+Question: cette règle métier peut-elle être implémentée dans un aggregat existant? Lequel?
+Qu'est-ce que ça implique?
+
+-->
 
 ---
 layout: image-left
@@ -204,4 +230,5 @@ Il ne doit pas contenir de logique d'infrastructure (accès aux données, envoi 
 En celà il se distingue d'un application service (ou service d'application) qui lui contient de la logique d'infrastructure 
 et qui va orchestrer les appels aux domain services, aux repositories, etc...
 
+TIMING: 1h40 min
 -->
