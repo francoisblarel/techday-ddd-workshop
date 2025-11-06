@@ -2,8 +2,6 @@ package com.decathlon.techday.dddworkshop.marketplace.domain.models;
 
 import com.decathlon.techday.dddworkshop.marketplace.domain.models.exceptions.InvalidAdStatusException;
 import com.decathlon.techday.dddworkshop.shared.domain.MusicianId;
-import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.UUID;
 
 public class Ad {
@@ -11,17 +9,15 @@ public class Ad {
   private final UUID id;
   private final MusicianId musicianId;
   private final String instrument;
-  private final BigDecimal price;
-  private final Currency currency;
+  private Price price;
   private AdStatus status;
 
-  public Ad(MusicianId musicianId, String instrument, BigDecimal price, Currency currency) {
+  Ad(MusicianId musicianId, String instrument, Price price) {
     this.id = UUID.randomUUID();
     this.musicianId = musicianId;
     this.instrument = instrument;
-    this.price = price;
-    this.currency = currency;
     this.status = AdStatus.AVAILABLE;
+    this.price = price;
   }
 
   public void sell() throws InvalidAdStatusException {
@@ -32,6 +28,10 @@ public class Ad {
     this.status = AdStatus.SOLD_OUT;
   }
 
+  public void applyDiscount(float percentage) {
+    price = price.discount(percentage);
+  }
+
   public UUID getId() {
     return id;
   }
@@ -40,19 +40,15 @@ public class Ad {
     return instrument;
   }
 
+  public Price getPrice() {
+    return price;
+  }
+
   public AdStatus getStatus() {
     return status;
   }
 
   public MusicianId getMusicianId() {
     return musicianId;
-  }
-
-  public BigDecimal getPrice() {
-    return price;
-  }
-
-  public Currency getCurrency() {
-    return currency;
   }
 }
