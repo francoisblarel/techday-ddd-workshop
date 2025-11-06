@@ -102,5 +102,8 @@ class: text-center
 [Resources](https://github.com/francoisblarel/techday-ddd-workshop/blob/main/RESOURCES.md) · [GitHub](https://github.com/francoisblarel/techday-ddd-workshop)
 · [Channel Slack DDD](https://decathlondigital.slack.com/archives/C091F769QP2)
 
+<br><br>
+<div>Bastien Terrier / François Blarel</div>
+
 
 <div class="source">image bank: https://pixabay.com/</div>

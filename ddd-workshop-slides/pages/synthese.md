@@ -5,42 +5,6 @@ class: text-center
 
 ## Wrap-up
 
----
-layout: center
-class: text-center
----
-
-## Domain Driven Design
-
-<br>
-<br>
-<br>
-
-<v-click>
-
-The DDD <span v-mark.red="2">methodology</span> offers a <span v-mark.red="3">set of practices</span> for a
-collaborative approach to software
-development,
-from the perspective of <span v-mark.circle.orange="4"> the business </span>.
-
-</v-click>
-
-<!--
-[click] Domain-Driven Design c'est 
-
-[click] une méthodologie qui propose 
-
-[click]un ensemble de pratiques pour une approche collaborative du développement logiciel, du point de vue
-
-[click] du métier.
--->
-
----
-layout: center
-class: text-center
----
-
-![images](../assets/sangliers.jpg)
 
 ---
 layout: image-left

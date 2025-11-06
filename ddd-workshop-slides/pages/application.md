@@ -84,6 +84,21 @@ car on a tendance à introduire des termes techniques (biais du dev) qui n'ont p
 
 -->
 
+---
+layout: center
+class: text-center
+---
+
+![images](../assets/sangliers.jpg)
+
+<!--
+
+C'est parfois subtil, car on peut avoir une application qui fonctionne, 
+mais qui n'est pas bien alignée avec le métier.
+Et c'est sur la durée que ça pose problème. Lors d'évolutions, on s'aperçoit qu'on ne comprends plus.
+
+-->
+
 --- 
 class: text-center
 layout: center
@@ -130,8 +145,7 @@ George E. P. Box
 
 Ce qu'on veut, c'est un model simple, utile dans un contexte donné. 
 
-Car si on veut faire un model qui couvre tout le domaine métier, 
-on va se retrouver avec une God Class.
+Et le contexte, c'est très important !
 
 -->
 
@@ -143,7 +157,6 @@ layout: center
 ![bounded-context.jpg](../assets/bounded-context.jpg)
 
 <!--
-On veut éviter ça...
 
 -->
 
@@ -159,11 +172,12 @@ layout: center
 
 Ca tombe bien, pour ça DDD nous donne la notion de bounded Context.
 
-Un bounded contexte, c'est une limite explicite autour d'un langage ubiquitaire via un modèle spécifique.
+Un bounded contexte, c'est une frontière explicite dans laquelle un langage ubiquitaire 
+va s'appliquer, via un modèle spécifique.
 
-Il va permettre de définir des frontières dans lesquelles un modèle spécifique s'applique.
+Tout l'enjeu va être de bien définir ces frontières.
 
-Mais comment trouver ces frontières ?
+Et pour ça on va s'appuyer sur les...
 -->
 
 
@@ -252,8 +266,10 @@ Tout ce dont on a parlé jusqu'à présent (ubiquitous language, bounded-context
 
 C'est un des pans, si ce n'est le pan le plus important du DDD.
 
-Il y a plein de chose à creuser là-dedans, et il y a plein d'ateliers possibles, comme par exemple l'Event Storming.
+Il y a plein de chose à creuser là-dedans, ici on a pris des raccourcis, on a été très vite. 
+Dans la réalité, on va passer beaucoup plus de temps pour comprendre et essayer de modéliser.
 
+Pour ça, on a pas mal de choses dans la toolbox DDD, et on peut notamment utiliser des ateliers collaboratifs comme l'Event Storming.
 -->
 
 ---
