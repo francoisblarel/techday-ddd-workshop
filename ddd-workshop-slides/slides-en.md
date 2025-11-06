@@ -5,10 +5,10 @@ theme: default
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Tech days 2025 - DDD Workshop 
+title: Tech days 2025 - DDD Workshop
 info: |
   ## Slides from the DDD Workshop
-  
+
 # apply UnoCSS classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -69,26 +69,25 @@ Decathlon Tech days 2025
   </style>
 
 <!--
-On a pensé à une application révolutionnaire pour les musiciens : 
-Une plateforme ou chaque musicien peut exposer son studio avec tous ses instruments. Montrer ses réglages, 
-ses configurations, ses effets, ses amplis, etc.
+We thought about a revolutionary application for musicians:
+A platform where each musician can showcase his studio with all his instruments. Show his settings,
+his configurations, his effects, his amps, etc.
 
-Mais ce n'est pas tout, il y a aussi une partie marketplace qui permet aux musiciens de vendre leurs instruments d'occasion entre eux via des annonces.
-Et cette appli, on l'a appelé...
+But that's not all, there is also a marketplace part that allows musicians to sell their used instruments to each other via ads.
 -->
 
 ---
-src: ./pages/application.md
+src: ./pages/application-en.md
 hide: false
 ---
 
 ---
-src: ./pages/atelier.md
+src: ./pages/atelier-en.md
 hide: false
 ---
 
 ---
-src: ./pages/synthese.md
+src: ./pages/synthese-en.md
 hide: false
 ---
 
@@ -101,9 +100,6 @@ class: text-center
 
 [Resources](https://github.com/francoisblarel/techday-ddd-workshop/blob/main/RESOURCES.md) · [GitHub](https://github.com/francoisblarel/techday-ddd-workshop)
 · [Channel Slack DDD](https://decathlondigital.slack.com/archives/C091F769QP2)
-
-<br><br>
-<div>Bastien Terrier / François Blarel</div>
 
 
 <div class="source">image bank: https://pixabay.com/</div>

@@ -84,12 +84,102 @@ car on a tendance à introduire des termes techniques (biais du dev) qui n'ont p
 
 -->
 
+---
+layout: center
+class: text-center
+---
+
+![images](../assets/sangliers.jpg)
+
+<!--
+
+C'est parfois subtil, car on peut avoir une application qui fonctionne, 
+mais qui n'est pas bien alignée avec le métier.
+Et c'est sur la durée que ça pose problème. Lors d'évolutions, on s'aperçoit qu'on ne comprends plus.
+
+-->
+
 --- 
 class: text-center
 layout: center
 ---
 
 ![ubiquitous-language.png](../assets/ubiquitous-language.png)
+
+<!--
+
+On veut construire un model mental partagé avec tout le monde et dans le code.
+
+Mais qu'est-ce qu'un modèle ?
+
+-->
+
+
+---
+layout: image
+image: ../assets/paris.jpg
+backgroundSize: contain
+---
+
+---
+layout: image
+image: ../assets/paris-map.jpg
+backgroundSize: contain
+---
+
+---
+layout: image
+image: ../assets/paris-metro.png
+backgroundSize: contain
+---
+
+---
+layout: quote
+---
+
+# "All the models are wrong, but some are useful"
+
+George E. P. Box
+
+<!--
+
+Ce qu'on veut, c'est un model simple, utile dans un contexte donné. 
+
+Et le contexte, c'est très important !
+
+-->
+
+---
+class: text-center
+layout: center
+---
+
+![bounded-context.jpg](../assets/bounded-context.jpg)
+
+<!--
+
+-->
+
+
+---
+class: text-center
+layout: center
+---
+
+## Bounded Context
+
+<!--
+
+Ca tombe bien, pour ça DDD nous donne la notion de bounded Context.
+
+Un bounded contexte, c'est une frontière explicite dans laquelle un langage ubiquitaire 
+va s'appliquer, via un modèle spécifique.
+
+Tout l'enjeu va être de bien définir ces frontières.
+
+Et pour ça on va s'appuyer sur les...
+-->
+
 
 ---
 class: text-center
@@ -99,8 +189,7 @@ layout: center
 ## Sub-domains
 
 <!--
-Maintenant qu'on a un vocabulaire commun, on va pouvoir commencer à structurer notre domaine métier.
-On va commencer par découper le domaine métier en sous-domaines.
+Les sous-domaines vont nous aider à structurer notre domaine métier.
 
 Un sous-domaine est une partie du domaine métier qui a une responsabilité spécifique. 
 Un ensemble de capacités métier cohérentes. 
@@ -144,6 +233,10 @@ layout: image
 image: ../assets/core-domain-chart.jpg
 backgroundSize: 65% 90%
 ---
+<div v-click style="position: fixed;right:300px;top:100px">MARKETPLACE</div>
+<div v-click style="position: fixed;right:300px;bottom:100px">STUDIO</div>
+<div v-click style="position: fixed;left:420px;top:200px">ALERTING</div>
+<div v-click style="position: fixed;left:315px;top:120px">PAYMENT</div>
 
 <div class="source">source: https://ddd-crew.github.io/ddd-starter-modelling-process/</div>
 
@@ -151,67 +244,13 @@ backgroundSize: 65% 90%
 Ici quel est notre core-domain?
 Quels sont les supporting subdomains?
 Quels sont les generic subdomains?
--->
----
-class: text-center
-layout: center
----
 
-## Bounded Context
+Grace à ce découpage, on va pouvoir aligner les bounded contexts.
+L'alignement entre les sous-domaines et les bounded contextes n'est pas forcément 1:1, mais c'est souvent le cas.
 
-<!--
-Maintenant qu'on a découpé le domaine métier en sous-domaines, on va pouvoir définir des Bounded Contexts.
-
-Un Bounded Context est une limite explicite autour d'un langage ubiquitaire via un modèle spécifique.
-
-Ce qu'on cherche à éviter, c'est d'avoir un modèle unique qui couvre tout le domaine métier. La God Class.
+C'est un choix d'architecture important à faire en amont du projet.
 -->
 
----
-class: text-center
-layout: center
----
-
-![bounded-context.jpg](../assets/bounded-context.jpg)
-
-<!--
-On veut éviter ça...
-
-Mais c'est quoi un modèle?
--->
-
----
-layout: image
-image: ../assets/paris.jpg
-backgroundSize: contain
----
-
----
-layout: image
-image: ../assets/paris-map.jpg
-backgroundSize: contain
----
-
----
-layout: image
-image: ../assets/paris-metro.png
-backgroundSize: contain
----
-
----
-layout: quote
----
-
-# "All the models are wrong, but some are useful"
-
-George E. P. Box
-
-<!--
-
-Le bounded context est une frontière explicite autour d'un modèle spécifique.
-Il va nous permettre d'isoler les différents modèles métiers, de les simplifier, et d'éviter les conflits de langage.
-
--->
 
 ---
 layout: image-right
@@ -223,12 +262,14 @@ image: ../assets/mic.jpg
 
 <!--
 
-Tout ce dont on a parlé jusque là, ça fait partie des patterns stratégiques.
+Tout ce dont on a parlé jusqu'à présent (ubiquitous language, bounded-contexts, sub-domains), ça fait partie des patterns stratégiques.
 
 C'est un des pans, si ce n'est le pan le plus important du DDD.
 
-Il y a plein de chose à creuser là-dedans, comme par exemple l'Event Storming.
+Il y a plein de chose à creuser là-dedans, ici on a pris des raccourcis, on a été très vite. 
+Dans la réalité, on va passer beaucoup plus de temps pour comprendre et essayer de modéliser.
 
+Pour ça, on a pas mal de choses dans la toolbox DDD, et on peut notamment utiliser des ateliers collaboratifs comme l'Event Storming.
 -->
 
 ---
