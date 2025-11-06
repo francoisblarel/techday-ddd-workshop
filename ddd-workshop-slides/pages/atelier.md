@@ -75,6 +75,8 @@ Par contre, ce n'est pas une entité Hibernate.
 Ici la notion d'encapsulation est importante. On n'expose pas les propriétés, mais des méthodes métier.
 On veut exprimer l'intention métier.
 
+Elle porte ses invariants métier. C'est elle qui garantit la cohérence de son état.
+
 TIMING: 35 min
 -->
 
@@ -156,7 +158,7 @@ image: ../assets/guitar.jpg
 <br>
 
 <h3 v-click>contains VO and/or entities</h3>
-<h3 v-click>responsible for its invariants</h3>
+<h3 v-click>root is responsible for its invariants</h3>
 <h3 v-click>garantees consistency</h3>
 <h3 v-click>defines transactional boundaries</h3>
 
@@ -164,7 +166,7 @@ image: ../assets/guitar.jpg
 <!--
 Un aggregate est un ensemble de VO et/ou d'entités qui forment une unité cohérente.
 
-Il est responsable de ses invariants. C'est lui qui garantit la cohérence de l'ensemble.
+La racine est responsable de ses invariants. C'est lui qui garantit la cohérence de l'ensemble.
 
 Il définit les frontières transactionnelles et structurelles.
 
